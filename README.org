@@ -1,0 +1,38 @@
+* Introduction
+The following project is a digital library were books you have read, planning to read or are currently reading can be stored.
+* Table Of Contents
+:PROPERTIES:
+:TOC: :include all :ignore this
+:END:
+:CONTENTS:
+- [[#introduction][Introduction]]
+- [[#general-info][General Info]]
+- [[#technologies][Technologies]]
+  - [[#frontend][Frontend]]
+  - [[#backend][Backend]]
+  - [[#tools][Tools]]
+- [[#launch][Launch]]
+- [[#version-rules][Version Rules]]
+- [[#final-words][Final Words]]
+:END:
+* General Info
+* Technologies
+** Frontend
+- HTML
+- CSS
+- JavaScript
+- SASS
+  
+** Backend
+- Java
+- Spring Framework
+- MySQL
+  
+** Tools
+- Maven
+* Launch
+* Version Rules
+- For major changes use whole numbers, 1.x
+- For minor changes use tenth of a decimal, x.2
+- For features use hundredth of a decimal, x.x8
+* Final Words
