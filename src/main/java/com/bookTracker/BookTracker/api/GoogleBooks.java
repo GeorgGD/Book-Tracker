@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 /**
- * A google books api class that searches for books
+ * A google books api interface for book searching
  * @auther Georgios Davakos
  * @since 2021-09-14
  */
