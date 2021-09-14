@@ -1,5 +1,6 @@
 package com.bookTracker.BookTracker.api;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,12 @@ public class GoogleBooksImp implements GoogleBooks {
 	
 	@Override
 	public void closeClient() {
-		// TODO Auto-generated method stub		
+		try {
+			if(client != null)
+				client.cache().close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
