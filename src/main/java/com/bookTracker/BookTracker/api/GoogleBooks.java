@@ -3,6 +3,8 @@ package com.bookTracker.BookTracker.api;
 import java.util.List;
 import java.util.Optional;
 
+import com.bookTracker.BookTracker.model.Book;
+
 import org.springframework.stereotype.Component;
 
 /**
