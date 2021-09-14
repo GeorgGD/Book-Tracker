@@ -1,5 +1,7 @@
 package com.bookTracker.BookTracker.repository;
 
+import com.bookTracker.BookTracker.model.Book;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
