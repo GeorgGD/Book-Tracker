@@ -1,11 +1,17 @@
 package com.bookTracker.BookTracker.api;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
 
 import com.bookTracker.BookTracker.dto.BookSearch;
 import com.bookTracker.BookTracker.model.Book;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,5 +99,38 @@ public class GoogleBooksImp implements GoogleBooks {
 			.get()
 			.build();
 		return request;
+	}
+
+	/**
+	 * Prepers a list of books from google-books-api
+	 * @param response The response from the API call
+	 * @return A list with books
+	 * @throws JsonMappingException 
+	 * @throws JsonProcessingException
+	 * @throws IOException	
+	 */	
+	private List<BookSearch> prepBooksList(Response response) throws JsonMappingException, JsonProcessingException, IOException {
+		JsonNode jsonTreeRoot = mapper.readTree(response.body().string());
+		JsonNode node = jsonTreeRoot.get("items");
+		if (node != null) {
+			int size = node.size();
+			List<BookSearch> list = Collections.synchronizedList(new ArrayList<BookSearch>());
+			CountDownLatch latch = new CountDownLatch(size);
+			
+			for (int i = 0; i < size; ++i) {				
+				JsonNode item = node.get(i);
+				Thread thread = new Thread(new ThreadingBookSearch(item, latch, list));
+				thread.start();
+			}
+			
+			try {
+				latch.await();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			return list;
+		}
+		return null;
 	}
 }
