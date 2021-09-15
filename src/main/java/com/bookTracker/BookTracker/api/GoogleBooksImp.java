@@ -170,6 +170,29 @@ public class GoogleBooksImp implements GoogleBooks {
 	}
 
 	/**
+	 * Perform an HTTP request to the given url, 
+	 * the expected response is in JSON
+	 * @param url The url used for the HTTP request
+	 * @return The response	from the HTTP request
+	 */	
+	private final JsonNode makeRequest(String url) {
+		final Request request = new Request.Builder().url(url).get().build();
+		Response response = null;
+		try {
+		    response = client.newCall(request).execute();
+			if(response.isSuccessful())
+				return mapper.readTree(response.body().string());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (response != null) {
+				response.close();
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * Meant for multithreading the server side rendering of books taken
 	 * from the google-books-api 	
 	 */
