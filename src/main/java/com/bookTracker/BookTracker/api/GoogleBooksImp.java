@@ -133,4 +133,30 @@ public class GoogleBooksImp implements GoogleBooks {
 		}
 		return null;
 	}
+
+	/**
+	 * Meant for multithreading the server side rendering of books taken
+	 * from the google-books-api 	
+	 */
+	class ThreadingBookSearch implements Runnable {
+		private JsonNode node;
+		private CountDownLatch latch;
+		private List<BookSearch> list;
+
+		public ThreadingBookSearch(JsonNode node, CountDownLatch latch, List<BookSearch> list) {
+			this.node = node;
+			this.latch = latch;
+			this.list = list;
+		}
+		
+		@Override
+		public void run() {
+			Optional<BookSearch> optional = prepBook(node);			
+			if (optional.isPresent()) {
+				list.add(optional.get());
+			}			
+			latch.countDown();
+		}
+		
+	}
 }
