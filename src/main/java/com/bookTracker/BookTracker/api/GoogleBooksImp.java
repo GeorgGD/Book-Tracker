@@ -81,5 +81,17 @@ public class GoogleBooksImp implements GoogleBooks {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	/**
+	 * Prepers the request to the API
+	 * @param query The search query 
+	 * @return The prepered request object	
+	 */	
+	private final Request prepRequest(String query) {
+		final Request request = new Request.Builder()
+			.url("https://www.googleapis.com/books/v1/volumes?q=" + query + "&key=" + API_KEY)
+			.get()
+			.build();
+		return request;
+	}
 }
