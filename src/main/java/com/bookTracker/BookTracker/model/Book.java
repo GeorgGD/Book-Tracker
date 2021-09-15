@@ -34,5 +34,5 @@ public class Book {
 	private String genre;
 	private boolean reading;
 	private Date completed_date;
-	private String coverImg;
+	private String cover_img;
 }
