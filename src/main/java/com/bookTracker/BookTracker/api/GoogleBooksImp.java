@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * A google books api class that searches for books
@@ -41,10 +43,37 @@ public class GoogleBooksImp implements GoogleBooks {
 		}
 	}
 
+	/**
+	 * Searches for books based on the given search query
+	 * @param query The search query
+	 * @return List of books matching the search query	
+	 */	
 	@Override
 	public Optional<List<BookSearch>> searchBook(String query) {
-		// TODO Auto-generated method stub
-		return null;
+	    if(query.equals(""))
+			return Optional.ofNullable(null);
+		
+		Optional<List<BookSearch>> optional = Optional.ofNullable(null);
+		final Request request = prepRequest(query);
+
+		Response response = null;
+
+		try{
+			response = client.newCall(request).execute();
+	
+			if(response.isSuccessful()) {
+				List<BookSearch> books = prepBooksList(response);
+				optional = Optional.ofNullable(books);
+			}
+			return optional;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if(response != null)
+				response.close();
+		}
+		
+		return optional;
 	}
 
 	@Override
