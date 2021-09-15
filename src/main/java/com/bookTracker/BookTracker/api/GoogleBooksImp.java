@@ -135,6 +135,41 @@ public class GoogleBooksImp implements GoogleBooks {
 	}
 
 	/**
+	 * Maps each book from google-books-api into an object
+	 * @param item The item containing the books information
+	 * @return An optional with the book item if the parameter was valid	
+	 */
+	private Optional<BookSearch> prepBook(JsonNode item) {
+		JsonNode tmp = null;
+		BookSearch bookSearch = new BookSearch();
+		String selfLink = item.get("selfLink").asText();
+		
+		if(selfLink != null) {
+			tmp = makeRequest(selfLink);
+		}
+		
+		if(tmp != null) {
+			bookSearch.setId(tmp.get("id").asText());
+			tmp = tmp.get("volumeInfo");
+			bookSearch.setTitle(tmp.get("title").asText());
+
+			JsonNode autherNode = tmp.get("authors");
+			if(autherNode != null)
+				bookSearch.setAuther(autherNode.get(0).asText());
+			else
+				return Optional.ofNullable(null);
+			
+			JsonNode imageNode = tmp.get("imageLinks");
+			if(imageNode != null && imageNode.get("medium") != null)				
+				bookSearch.setCover_img(imageNode.get("medium").asText().replaceFirst("http", "https"));
+			else
+				return Optional.ofNullable(null);
+			return Optional.ofNullable(bookSearch);
+		}
+		return Optional.ofNullable(null);
+	}
+
+	/**
 	 * Meant for multithreading the server side rendering of books taken
 	 * from the google-books-api 	
 	 */
