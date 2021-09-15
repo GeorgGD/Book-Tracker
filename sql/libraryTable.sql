@@ -5,5 +5,7 @@ CREATE TABLE IF NOT EXISTS library (
        genre VARCHAR(300),
        reading TINYINT(1),
        completed_date DATE,
+       cover_img TEXT,
        PRIMARY KEY (id)
 );
+
