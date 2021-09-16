@@ -82,6 +82,11 @@ public class GoogleBooksImp implements GoogleBooks {
 		return optional;
 	}
 
+	/**
+	 * Collects information about a given book
+	 * @param bookID The ID of the book
+	 * @return The book if the given book id exists	
+	 */
 	@Override
 	public Optional<Book> bookInfo(String bookId) {
 		// TODO Auto-generated method stub
