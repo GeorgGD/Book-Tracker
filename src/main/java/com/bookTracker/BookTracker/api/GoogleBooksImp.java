@@ -168,7 +168,7 @@ public class GoogleBooksImp implements GoogleBooks {
 			
 			JsonNode imageNode = tmp.get("imageLinks");
 			if(imageNode != null && imageNode.get("medium") != null)				
-				bookSearch.setCover_img(imageNode.get("medium").asText().replaceFirst("http", "https"));
+				bookSearch.setCoverImg(imageNode.get("medium").asText().replaceFirst("http", "https"));
 			else
 				return Optional.ofNullable(null);
 			return Optional.ofNullable(bookSearch);
