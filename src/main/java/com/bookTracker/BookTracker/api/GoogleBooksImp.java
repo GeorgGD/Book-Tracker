@@ -84,13 +84,15 @@ public class GoogleBooksImp implements GoogleBooks {
 
 	/**
 	 * Collects information about a given book
-	 * @param bookID The ID of the book
+	 * @param bookId The ID of the book
 	 * @return The book if the given book id exists	
 	 */
 	@Override
 	public Optional<Book> bookInfo(String bookId) {
-		// TODO Auto-generated method stub
-		return null;
+	    String url = "https://www.googleapis.com/books/v1/volumes/" + bookId;
+		JsonNode root = makeRequest(url);
+		Optional<Book> book = createBook(root);
+		return book;
 	}
 
 	/**
