@@ -82,10 +82,17 @@ public class GoogleBooksImp implements GoogleBooks {
 		return optional;
 	}
 
+	/**
+	 * Collects information about a given book
+	 * @param bookId The ID of the book
+	 * @return The book if the given book id exists	
+	 */
 	@Override
 	public Optional<Book> bookInfo(String bookId) {
-		// TODO Auto-generated method stub
-		return null;
+	    String url = "https://www.googleapis.com/books/v1/volumes/" + bookId;
+		JsonNode root = makeRequest(url);
+		Optional<Book> book = createBook(root);
+		return book;
 	}
 
 	/**
@@ -161,7 +168,7 @@ public class GoogleBooksImp implements GoogleBooks {
 			
 			JsonNode imageNode = tmp.get("imageLinks");
 			if(imageNode != null && imageNode.get("medium") != null)				
-				bookSearch.setCover_img(imageNode.get("medium").asText().replaceFirst("http", "https"));
+				bookSearch.setCoverImg(imageNode.get("medium").asText().replaceFirst("http", "https"));
 			else
 				return Optional.ofNullable(null);
 			return Optional.ofNullable(bookSearch);
@@ -190,6 +197,29 @@ public class GoogleBooksImp implements GoogleBooks {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Takes a JSON that represents a book from google-books-api 
+	 * and maps the data into a book object used by the database
+	 * @param root The JSON representing a book
+	 * @return A book with the mapped data
+	 */	
+	private Optional<Book> createBook(JsonNode root) {
+		if(root == null)
+			return Optional.ofNullable(null);
+	
+		Book book = new Book();
+		root = root.get("volumeInfo");
+		book.setName(root.get("title").asText());
+		book.setAuther(root.get("authors").get(0).asText());
+	
+		JsonNode categoriesNode = root.get("categories");
+		if (categoriesNode != null) {
+			book.setGenre(categoriesNode.get(0).asText());
+		}
+		
+		return Optional.ofNullable(book);
 	}
 	
 	/**
