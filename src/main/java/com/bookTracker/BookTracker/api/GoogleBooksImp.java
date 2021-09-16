@@ -218,7 +218,12 @@ public class GoogleBooksImp implements GoogleBooks {
 		if (categoriesNode != null) {
 			book.setGenre(categoriesNode.get(0).asText());
 		}
-		
+
+		JsonNode imageNode = root.get("imageLinks");
+		if(imageNode != null && imageNode.get("medium") != null)				
+			book.setCover_img(imageNode.get("medium").asText().replaceFirst("http", "https"));
+		else
+			return Optional.ofNullable(null);
 		return Optional.ofNullable(book);
 	}
 	
