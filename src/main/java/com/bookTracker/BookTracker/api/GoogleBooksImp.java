@@ -198,6 +198,29 @@ public class GoogleBooksImp implements GoogleBooks {
 		}
 		return null;
 	}
+
+	/**
+	 * Takes a JSON that represents a book from google-books-api 
+	 * and maps the data into a book object used by the database
+	 * @param root The JSON representing a book
+	 * @return A book with the mapped data
+	 */	
+	private Optional<Book> createBook(JsonNode root) {
+		if(root == null)
+			return Optional.ofNullable(null);
+	
+		Book book = new Book();
+		root = root.get("volumeInfo");
+		book.setName(root.get("title").asText());
+		book.setAuther(root.get("authors").get(0).asText());
+	
+		JsonNode categoriesNode = root.get("categories");
+		if (categoriesNode != null) {
+			book.setGenre(categoriesNode.get(0).asText());
+		}
+		
+		return Optional.ofNullable(book);
+	}
 	
 	/**
 	 * Meant for multithreading the server side rendering of books taken
