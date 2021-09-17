@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import lombok.RequiredArgsConstructor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -27,17 +28,16 @@ import okhttp3.Response;
  * @auther Georgios Davakos
  * @since 2021-09-14
  */
+@RequiredArgsConstructor
 @Component
 public class GoogleBooksImp implements GoogleBooks {
 
 	@Value("${google.api.key: no-key}")
 	static private String API_KEY;
 
-	@Autowired
-	private OkHttpClient client;
+	private final OkHttpClient client;
 
-	@Autowired
-	private ObjectMapper mapper;
+	private final ObjectMapper mapper;
 	
 	@Override
 	public void closeClient() {
