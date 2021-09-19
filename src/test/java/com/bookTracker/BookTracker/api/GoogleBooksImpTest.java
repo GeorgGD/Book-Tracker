@@ -21,6 +21,14 @@ public class GoogleBooksImpTest {
 
 	private GoogleBooksImp googleBooksImp;
 	private OkHttpClient client;
+
+	private void setupClient() throws IOException {
+		client = mock(OkHttpClient.class);
+		String url = "https://www.googleapis.com/books/v1/volumes?q=courage+is+calling&key=no-key";
+		Request bookSearch = setupSearchBookRequest(url);
+		Response response = setupSearchBookResponse("bookSearchJSON.txt");
+		when(client.newCall(bookSearch).execute()).thenReturn(response);
+	}
 	
 	@Before
 	private GoogleBooksImp createGoogleBooksImp() {
