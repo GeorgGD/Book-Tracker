@@ -38,6 +38,13 @@ public class GoogleBooksImpTest {
 		return request;
 	}
 	
+	private Response setupSearchBookResponse(String fileName) {
+		Response response = new Response.Builder()
+			.body(ResponseBody.create(MediaType.get("application/json"), readJsonFile(fileName)))
+			.build();
+		return response;
+	}
+	
 	@Before
 	private GoogleBooksImp createGoogleBooksImp() {
 		try {
