@@ -29,6 +29,14 @@ public class GoogleBooksImpTest {
 		Response response = setupSearchBookResponse("bookSearchJSON.txt");
 		when(client.newCall(bookSearch).execute()).thenReturn(response);
 	}
+
+	private Request setupSearchBookRequest(String url) {
+		Request request = new Request.Builder()
+			.url(url)
+			.get()
+			.build();
+		return request;
+	}
 	
 	@Before
 	private GoogleBooksImp createGoogleBooksImp() {
