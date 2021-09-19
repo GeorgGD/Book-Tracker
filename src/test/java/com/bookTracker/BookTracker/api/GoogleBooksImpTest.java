@@ -44,6 +44,23 @@ public class GoogleBooksImpTest {
 			.build();
 		return response;
 	}
+
+	private String readJsonFile(String fileName) {
+		File file = new File(fileName);
+		String line;
+		String text = "";
+
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			while((line = reader.readLine()) != null) {
+				text += line;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		return text;
+	}
 	
 	@Before
 	private GoogleBooksImp createGoogleBooksImp() {
