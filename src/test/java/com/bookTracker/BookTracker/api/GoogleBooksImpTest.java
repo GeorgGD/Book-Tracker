@@ -37,7 +37,7 @@ public class GoogleBooksImpTest {
 
 	private void setupCall() throws IOException {
 		call = mock(Call.class);
-		Response response = setupSearchBookResponse("../bookSearchJSON.txt", new Request.Builder().url("http://www.notneededurl.com").get().build());
+		Response response = setupSearchBookResponse("bookSearchJSON.txt", new Request.Builder().url("http://www.notneededurl.com").get().build());
 		when(call.execute()).thenReturn(response);
 	}
 	
@@ -61,10 +61,12 @@ public class GoogleBooksImpTest {
 	}
 
 	private String readJsonFile(String fileName) {
+		fileName = System.getProperty("user.dir") + "/target/test-classes/" + fileName;
+		
 		File file = new File(fileName);
 		String line;
 		String text = "";
-
+		
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			while((line = reader.readLine()) != null) {
@@ -85,5 +87,5 @@ public class GoogleBooksImpTest {
 			e.printStackTrace();
 		}
 		googleBooksImp = new GoogleBooksImp(client, new ObjectMapper());
-	}	
+	}
 }
