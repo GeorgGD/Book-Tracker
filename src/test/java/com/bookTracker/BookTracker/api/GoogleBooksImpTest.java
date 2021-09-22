@@ -25,11 +25,11 @@ import okhttp3.ResponseBody;
 @SpringBootTest
 public class GoogleBooksImpTest {
 
-	private GoogleBooksImp googleBooksImp;
-	private OkHttpClient client;
-	private Call call;
+	private static GoogleBooksImp googleBooksImp;
+	private static OkHttpClient client;
+	private static Call call;
 
-	private void setupClient() throws IOException {
+	private static void setupClient() throws IOException {
 		client = mock(OkHttpClient.class);		
 		String url = "https://www.googleapis.com/books/v1/volumes?q=courage+is+calling&key=no-key";
 		Request bookSearch = setupSearchBookRequest(url);
@@ -37,13 +37,13 @@ public class GoogleBooksImpTest {
 		when(client.cache()).thenReturn(new Cache(null, 10));
 	}
 
-	private void setupCall() throws IOException {
+	private static void setupCall() throws IOException {
 		call = mock(Call.class);
 		Response response = setupSearchBookResponse("bookSearchJSON.txt", new Request.Builder().url("http://www.notneededurl.com").get().build());
 		when(call.execute()).thenReturn(response);
 	}
 	
-	private Request setupSearchBookRequest(String url) {
+	private static Request setupSearchBookRequest(String url) {
 		Request request = new Request.Builder()
 			.url(url)
 			.get()
@@ -51,7 +51,7 @@ public class GoogleBooksImpTest {
 		return request;
 	}
 	
-	private Response setupSearchBookResponse(String fileName, Request request) {
+	private static Response setupSearchBookResponse(String fileName, Request request) {
 		Response response = new Response.Builder()
 			.request(request)
 			.protocol(Protocol.HTTP_1_0)
@@ -62,7 +62,7 @@ public class GoogleBooksImpTest {
 		return response;
 	}
 
-	private String readJsonFile(String fileName) {
+	private static String readJsonFile(String fileName) {
 		fileName = System.getProperty("user.dir") + "/target/test-classes/" + fileName;
 		
 		File file = new File(fileName);
@@ -81,7 +81,7 @@ public class GoogleBooksImpTest {
 	}
 	
 	@BeforeAll
-    public void createGoogleBooksImp() {
+    public static void createGoogleBooksImp() {
 		try {
 			setupCall();
 			setupClient();
