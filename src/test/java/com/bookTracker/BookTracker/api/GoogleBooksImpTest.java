@@ -91,4 +91,9 @@ public class GoogleBooksImpTest {
 		googleBooksImp = new GoogleBooksImp(client, new ObjectMapper());
 	}
 
+	@Test
+	public void closeClient_ClosesClient_ClosingCache() {
+		googleBooksImp.closeClient();
+		verify(client, times(1)).cache();
+	}
 }
