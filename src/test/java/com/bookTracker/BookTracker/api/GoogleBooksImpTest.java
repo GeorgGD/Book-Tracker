@@ -9,10 +9,11 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -33,6 +34,7 @@ public class GoogleBooksImpTest {
 		String url = "https://www.googleapis.com/books/v1/volumes?q=courage+is+calling&key=no-key";
 		Request bookSearch = setupSearchBookRequest(url);
 		when(client.newCall(bookSearch)).thenReturn(call);
+		when(client.cache()).thenReturn(new Cache(null, 10));
 	}
 
 	private void setupCall() throws IOException {
@@ -78,7 +80,7 @@ public class GoogleBooksImpTest {
 		return text;
 	}
 	
-	@BeforeEach
+	@BeforeAll
     public void createGoogleBooksImp() {
 		try {
 			setupCall();
@@ -88,4 +90,5 @@ public class GoogleBooksImpTest {
 		}
 		googleBooksImp = new GoogleBooksImp(client, new ObjectMapper());
 	}
+
 }
