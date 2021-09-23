@@ -6,9 +6,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
+import com.bookTracker.BookTracker.dto.BookSearch;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,9 +35,7 @@ public class GoogleBooksImpTest {
 
 	private static void setupClient() throws IOException {
 		client = mock(OkHttpClient.class);		
-		String url = "https://www.googleapis.com/books/v1/volumes?q=courage+is+calling&key=no-key";
-		Request bookSearch = setupSearchBookRequest(url);
-		when(client.newCall(bookSearch)).thenReturn(call);
+		when(client.newCall(any(Request.class))).thenReturn(call);
 		when(client.cache()).thenReturn(new Cache(null, 10));
 	}
 
@@ -41,14 +43,6 @@ public class GoogleBooksImpTest {
 		call = mock(Call.class);
 		Response response = setupSearchBookResponse("bookSearchJSON.txt", new Request.Builder().url("http://www.notneededurl.com").get().build());
 		when(call.execute()).thenReturn(response);
-	}
-	
-	private static Request setupSearchBookRequest(String url) {
-		Request request = new Request.Builder()
-			.url(url)
-			.get()
-			.build();
-		return request;
 	}
 	
 	private static Response setupSearchBookResponse(String fileName, Request request) {
@@ -95,5 +89,13 @@ public class GoogleBooksImpTest {
 	public void closeClient_ClosesClient_ClosingCache() {
 		googleBooksImp.closeClient();
 		verify(client, times(1)).cache();
+	}
+
+	@Test
+	public void searchBook_SearchForBook_FindBook() {
+		Optional<List<BookSearch>> optional = googleBooksImp.searchBook("courage+is+calling");
+
+		if(optional.isEmpty())
+			fail("No book was returned after a search when a book should have been returned");
 	}
 }
