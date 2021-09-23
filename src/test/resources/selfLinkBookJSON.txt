@@ -1,0 +1,82 @@
+{
+  "kind": "books#volume",
+  "id": "isMsEAAAQBAJ",
+  "etag": "70gkt1jqzSU",
+  "selfLink": "https://www.googleapis.com/books/v1/volumes/isMsEAAAQBAJ",
+  "volumeInfo": {
+    "title": "Courage Is Calling",
+    "subtitle": "Fortune Favors the Brave",
+    "authors": [
+      "Ryan Holiday"
+    ],
+    "publisher": "Penguin",
+    "publishedDate": "2021-09-28",
+    "description": "\u003cb\u003e\u003cb\u003eRyan Holiday’s bestselling trilogy—\u003ci\u003eThe Obstacle Is the Way\u003c/i\u003e, \u003ci\u003eEgo is the Enemy\u003c/i\u003e, and \u003ci\u003eStillness is the Key\u003c/i\u003e—captivated professional athletes, CEOs, politicians, and entrepreneurs and helped bring Stoicism to millions of readers. Now, in the first book of an exciting new series on the cardinal virtues of ancient philosophy, Holiday explores the most foundational virtue of all: Courage.\u003c/b\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003eAlmost every religion, spiritual practice, philosophy and person grapples with fear. The most repeated phrase in the Bible is “Be not afraid.” The ancient Greeks spoke of \u003ci\u003ephobos,\u003c/i\u003e panic and terror. It is natural to feel fear, the Stoics believed, but it cannot rule you. Courage, then, is the ability to rise above fear, to do what’s right, to do what’s needed, to do what is true. And so it rests at the heart of the works of Marcus Aurelius, Aristotle, and CS Lewis, alongside temperance, justice, and wisdom.\u003cbr\u003e \u003cbr\u003eIn \u003ci\u003eCourage Is Calling\u003c/i\u003e, Ryan Holiday breaks down the elements of fear, an expression of cowardice, the elements of courage, an expression of bravery, and lastly, the elements of heroism, an expression of valor. Through engaging stories about historic and contemporary leaders, including Charles De Gaulle, Florence Nightingale, and Dr. Martin Luther King Jr., Holiday shows you how to conquer fear and practice courage in your daily life.\u003cbr\u003e \u003cbr\u003eYou’ll also delve deep into the moral dilemmas and courageous acts of lesser-known, but equally as important, figures from ancient and modern history, such as Helvidius Priscus, a Roman Senator who stood his ground against emperor Vespasian, even in the face of death; Frank Serpico, a former New York City Police Department Detective who exposed police corruption; and Frederick Douglass and a slave named Nelly, whose fierce resistance against her captors inspired his own crusade to end slavery.\u003cbr\u003e \u003cbr\u003eIn a world in which fear runs rampant—when people would rather stand on the sidelines than speak out against injustice, go along with convention than bet on themselves, and turn a blind eye to the ugly realities of modern life—we need courage more than ever. We need the courage of whistleblowers and risk takers. We need the courage of activists and adventurers. We need the courage of writers who speak the truth—and the courage of leaders to listen.\u003cbr\u003e \u003cbr\u003eWe need you to step into the arena and fight.",
+    "industryIdentifiers": [
+      {
+        "type": "ISBN_10",
+        "identifier": "0593191684"
+      },
+      {
+        "type": "ISBN_13",
+        "identifier": "9780593191682"
+      }
+    ],
+    "readingModes": {
+      "text": true,
+      "image": false
+    },
+    "pageCount": 304,
+    "printedPageCount": 305,
+    "printType": "BOOK",
+    "categories": [
+      "Business & Economics / Motivational",
+      "Self-Help / Motivational & Inspirational",
+      "Philosophy / History & Surveys / Ancient & Classical"
+    ],
+    "maturityRating": "NOT_MATURE",
+    "allowAnonLogging": false,
+    "contentVersion": "1.1.1.0.preview.2",
+    "panelizationSummary": {
+      "containsEpubBubbles": false,
+      "containsImageBubbles": false
+    },
+    "imageLinks": {
+      "smallThumbnail": "http://books.google.com/books/publisher/content?id=isMsEAAAQBAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE70SHxIrmo1KHlJGDZkQqlzbngddE6LUxsRthg8-Ly5si-taJ3ivpguUzkOPd-8cWk-KS9C8nS-KOHa0Rea85QE65eX0tVWSRxRLvELZs1IpX-WwDCtZtL9xVEDoI5JcDg8f7UYt&source=gbs_api",
+      "thumbnail": "http://books.google.com/books/publisher/content?id=isMsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE70s35zZBhyoDgj6L0dzsJT-w8usi9_ucpDltJh5TNDjvn-0-JRKOkn22nMLB05jo8F3deafB6BfH1ttZmyq0WpK7cmFM7DpPxdyADxBnkQtBzypct5h2w5MfxF4SQ_VJ47SB0Cm&source=gbs_api"
+    },
+    "language": "en",
+    "previewLink": "http://books.google.se/books?id=isMsEAAAQBAJ&hl=&source=gbs_api",
+    "infoLink": "https://play.google.com/store/books/details?id=isMsEAAAQBAJ&source=gbs_api",
+    "canonicalVolumeLink": "https://play.google.com/store/books/details?id=isMsEAAAQBAJ"
+  },
+  "layerInfo": {
+    "layers": [
+      {
+        "layerId": "geo",
+        "volumeAnnotationsVersion": "1"
+      }
+    ]
+  },
+  "saleInfo": {
+    "country": "SE",
+    "saleability": "NOT_FOR_SALE",
+    "isEbook": false
+  },
+  "accessInfo": {
+    "country": "SE",
+    "viewability": "NO_PAGES",
+    "embeddable": false,
+    "publicDomain": false,
+    "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+    "epub": {
+      "isAvailable": true
+    },
+    "pdf": {
+      "isAvailable": false
+    },
+    "webReaderLink": "http://play.google.com/books/reader?id=isMsEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+    "accessViewStatus": "NONE",
+    "quoteSharingAllowed": false
+  }
+}

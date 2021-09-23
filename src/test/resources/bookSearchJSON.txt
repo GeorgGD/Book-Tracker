@@ -1,0 +1,81 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 480,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "isMsEAAAQBAJ",
+      "etag": "fnka0EwmaYE",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/isMsEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Courage Is Calling",
+        "subtitle": "Fortune Favors the Brave",
+        "authors": [
+          "Ryan Holiday"
+        ],
+        "publisher": "Penguin",
+        "publishedDate": "2021-09-28",
+        "description": "Ryan Holiday’s bestselling trilogy—The Obstacle Is the Way, Ego is the Enemy, and Stillness is the Key—captivated professional athletes, CEOs, politicians, and entrepreneurs and helped bring Stoicism to millions of readers. Now, in the first book of an exciting new series on the cardinal virtues of ancient philosophy, Holiday explores the most foundational virtue of all: Courage. Almost every religion, spiritual practice, philosophy and person grapples with fear. The most repeated phrase in the Bible is “Be not afraid.” The ancient Greeks spoke of phobos, panic and terror. It is natural to feel fear, the Stoics believed, but it cannot rule you. Courage, then, is the ability to rise above fear, to do what’s right, to do what’s needed, to do what is true. And so it rests at the heart of the works of Marcus Aurelius, Aristotle, and CS Lewis, alongside temperance, justice, and wisdom. In Courage Is Calling, Ryan Holiday breaks down the elements of fear, an expression of cowardice, the elements of courage, an expression of bravery, and lastly, the elements of heroism, an expression of valor. Through engaging stories about historic and contemporary leaders, including Charles De Gaulle, Florence Nightingale, and Dr. Martin Luther King Jr., Holiday shows you how to conquer fear and practice courage in your daily life. You’ll also delve deep into the moral dilemmas and courageous acts of lesser-known, but equally as important, figures from ancient and modern history, such as Helvidius Priscus, a Roman Senator who stood his ground against emperor Vespasian, even in the face of death; Frank Serpico, a former New York City Police Department Detective who exposed police corruption; and Frederick Douglass and a slave named Nelly, whose fierce resistance against her captors inspired his own crusade to end slavery. In a world in which fear runs rampant—when people would rather stand on the sidelines than speak out against injustice, go along with convention than bet on themselves, and turn a blind eye to the ugly realities of modern life—we need courage more than ever. We need the courage of whistleblowers and risk takers. We need the courage of activists and adventurers. We need the courage of writers who speak the truth—and the courage of leaders to listen. We need you to step into the arena and fight.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9780593191682"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "0593191684"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": false
+        },
+        "pageCount": 304,
+        "printType": "BOOK",
+        "categories": [
+          "Business & Economics"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.2",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=isMsEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=isMsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.se/books?id=isMsEAAAQBAJ&printsec=frontcover&dq=courage+is+calling&hl=&cd=1&source=gbs_api",
+        "infoLink": "http://books.google.se/books?id=isMsEAAAQBAJ&dq=courage+is+calling&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Courage_Is_Calling.html?hl=&id=isMsEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "SE",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "SE",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.se/books/download/Courage_Is_Calling-sample-epub.acsm?id=isMsEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=isMsEAAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Now, in the first book of an exciting new series on the cardinal virtues of ancient philosophy, Holiday explores the most foundational virtue of all: Courage."
+      }
+    }
+  ]
+}
