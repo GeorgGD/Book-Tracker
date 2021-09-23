@@ -166,8 +166,8 @@ public class GoogleBooksImp implements GoogleBooks {
 				return Optional.ofNullable(null);
 			
 			JsonNode imageNode = tmp.get("imageLinks");
-			if(imageNode != null && imageNode.get("medium") != null)				
-				bookSearch.setCoverImg(imageNode.get("medium").asText().replaceFirst("http", "https"));
+			if(imageNode != null && imageNode.get("thumbnail") != null)
+				bookSearch.setCoverImg(imageNode.get("thumbnail").asText().replaceFirst("http", "https"));
 			else
 				return Optional.ofNullable(null);
 			return Optional.ofNullable(bookSearch);
@@ -219,8 +219,8 @@ public class GoogleBooksImp implements GoogleBooks {
 		}
 
 		JsonNode imageNode = root.get("imageLinks");
-		if(imageNode != null && imageNode.get("medium") != null)				
-			book.setCover_img(imageNode.get("medium").asText().replaceFirst("http", "https"));
+		if(imageNode != null && imageNode.get("thumbnail") != null)				
+			book.setCover_img(imageNode.get("thumbnail").asText().replaceFirst("http", "https"));
 		else
 			return Optional.ofNullable(null);
 		return Optional.ofNullable(book);
