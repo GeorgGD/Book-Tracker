@@ -14,7 +14,7 @@ import com.bookTracker.BookTracker.model.Book;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -78,8 +78,8 @@ public class GoogleBooksImpTest {
 		return text;
 	}
 	
-	@BeforeAll
-    public static void createGoogleBooksImp() {
+	@BeforeEach
+    public void createGoogleBooksImp() {
 		try {
 			setupCall();
 			setupClient();
@@ -124,7 +124,7 @@ public class GoogleBooksImpTest {
 		String nonsenseArg = "hi";
 		String expectedBookName = "Courage Is Calling";
 		String expectedBookAuther = "Ryan Holiday";
-
+	    
 		Optional<Book> optional = googleBooksImp.bookInfo(nonsenseArg);
 
 		if(optional.isEmpty())
