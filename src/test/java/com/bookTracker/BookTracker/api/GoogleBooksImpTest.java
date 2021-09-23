@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.bookTracker.BookTracker.dto.BookSearch;
+import com.bookTracker.BookTracker.model.Book;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -115,5 +116,22 @@ public class GoogleBooksImpTest {
 		assertEquals(expectedBookTitle, bookSearch.getTitle());
 		assertEquals(expectedBookAuther, bookSearch.getAuther());
 		assertNotNull(bookSearch.getCoverImg());
+	}
+
+	@Test
+	@Order(2)
+	public void bookInfo_SearchForSpecificBook_FindBook() {
+		String nonsenseArg = "hi";
+		String expectedBookName = "Courage Is Calling";
+		String expectedBookAuther = "Ryan Holiday";
+
+		Optional<Book> optional = googleBooksImp.bookInfo(nonsenseArg);
+
+		if(optional.isEmpty())
+			fail("Book was not found");
+
+		Book book = optional.get();
+		assertEquals(expectedBookName, book.getName());
+		assertEquals(expectedBookAuther, book.getAuther());	    
 	}
 }
