@@ -117,11 +117,13 @@ public class GoogleBooksImpTest {
 	}
 
 	@Test
-	public void bookInfo_SearchForSpecificBook_FindBook() {
+	public void bookInfo_SearchForSpecificBook_FindBook() throws IOException {
 		String nonsenseArg = "hi";
 		String expectedBookName = "Courage Is Calling";
 		String expectedBookAuther = "Ryan Holiday";
-	    
+
+		call.execute(); // Need to do this because we only want the second return value from this mock. 
+		
 		Optional<Book> optional = googleBooksImp.bookInfo(nonsenseArg);
 
 		if(optional.isEmpty())
