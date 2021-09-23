@@ -15,7 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -96,7 +95,6 @@ public class GoogleBooksImpTest {
 	}
 
 	@Test
-	@Order(1)
 	public void searchBook_SearchForBook_FindBook() throws IOException {
 		int expectedSize = 1;
 		String expectedBookTitle = "Courage Is Calling";
@@ -119,7 +117,6 @@ public class GoogleBooksImpTest {
 	}
 
 	@Test
-	@Order(2)
 	public void bookInfo_SearchForSpecificBook_FindBook() {
 		String nonsenseArg = "hi";
 		String expectedBookName = "Courage Is Calling";
