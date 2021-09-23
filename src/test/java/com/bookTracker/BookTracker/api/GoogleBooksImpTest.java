@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -94,10 +95,25 @@ public class GoogleBooksImpTest {
 	}
 
 	@Test
-	public void searchBook_SearchForBook_FindBook() {
+	@Order(1)
+	public void searchBook_SearchForBook_FindBook() throws IOException {
+		int expectedSize = 1;
+		String expectedBookTitle = "Courage Is Calling";
+		String expectedBookAuther = "Ryan Holiday";
+		
 		Optional<List<BookSearch>> optional = googleBooksImp.searchBook("courage+is+calling");
 
+		verify(call, times(2)).execute();
+		
 		if(optional.isEmpty())
 			fail("No book was returned after a search when a book should have been returned");
+
+		List<BookSearch> listOfRetrievedBooks = optional.get();
+		assertEquals(expectedSize, listOfRetrievedBooks.size());
+
+		BookSearch bookSearch = listOfRetrievedBooks.get(0);
+		assertEquals(expectedBookTitle, bookSearch.getTitle());
+		assertEquals(expectedBookAuther, bookSearch.getAuther());
+		assertNotNull(bookSearch.getCoverImg());
 	}
 }
