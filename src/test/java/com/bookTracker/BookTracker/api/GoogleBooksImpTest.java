@@ -42,7 +42,9 @@ public class GoogleBooksImpTest {
 	private static void setupCall() throws IOException {
 		call = mock(Call.class);
 		Response response = setupSearchBookResponse("bookSearchJSON.txt", new Request.Builder().url("http://www.notneededurl.com").get().build());
-		when(call.execute()).thenReturn(response);
+		Response secondResponse = setupSearchBookResponse("selfLinkBookJSON.txt", new Request.Builder().url("http://www.notneededurl.com").get().build());
+		
+		when(call.execute()).thenReturn(response, secondResponse);
 	}
 	
 	private static Response setupSearchBookResponse(String fileName, Request request) {
