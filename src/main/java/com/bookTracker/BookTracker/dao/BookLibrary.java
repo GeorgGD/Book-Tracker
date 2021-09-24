@@ -11,4 +11,11 @@ public interface BookLibrary {
 
 	public List<Book> getAllEntries();
 
+	public void createBook(Book entry);
+
+	public void updateBook(Book entry);
+
+	public void deleteBook(Integer id);
+
+	public int availableID();
 }
