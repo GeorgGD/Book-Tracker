@@ -55,8 +55,7 @@ public class BookLibraryImp implements BookLibrary {
 	 */	
 	@Override
 	public void updateBook(Book entry) {
-		// TODO Auto-generated method stub
-		
+	    createBook(entry);
 	}
 
 	/**
