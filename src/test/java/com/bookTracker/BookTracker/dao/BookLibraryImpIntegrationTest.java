@@ -87,4 +87,24 @@ public class BookLibraryImpIntegrationTest {
 		
 		assertEquals(expectedAvailableId, bookLibrary.availableID());
 	}
+
+	@Test
+	public void availableID_CheckForAvailableId_GetAnAvailableIdAfterUpdate() {
+		int expectedAvailableId = 3;
+		int idForTesting = 2;
+		int idForTestingTwo = 4;
+
+		Book bookForTesting = createBookForTest();
+		bookForTesting.setId(idForTesting);
+
+		bookLibrary.createBook(bookForTesting);
+		bookForTesting = createBookForTest();
+		bookForTesting.setId(idForTestingTwo);
+		bookLibrary.createBook(bookForTesting);
+
+		assertEquals(expectedAvailableId, bookLibrary.availableID());
+
+		bookLibrary.deleteBook(idForTesting);
+		bookLibrary.deleteBook(idForTestingTwo);
+	}
 }
