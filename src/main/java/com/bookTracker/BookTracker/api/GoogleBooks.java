@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * A google books api interface for book searching
- * @auther Georgios Davakos
+ * @author Georgios Davakos
  * @since 2021-09-14
  */
 @Component
