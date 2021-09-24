@@ -77,7 +77,25 @@ public class BookLibraryImp implements BookLibrary {
 	 */
 	@Override
 	public int availableID() {
-		// TODO Auto-generated method stub
+		Iterable<Book> books = bookRepo.findAll();
+		Book prevBook = null;
+		int diff = 0;
+		int counter = 0;
+
+		for (Book book : books) {
+			if (prevBook != null) {
+				diff = book.getId() - prevBook.getId();
+				if (diff > 1) {
+					int idNotUsed = prevBook.getId() + 1;
+					return idNotUsed;
+				}
+			}
+
+			prevBook = book;
+			counter++;
+		}
+
+		int idNotUsed = counter + 1;
 		return 0;
 	}
 	
