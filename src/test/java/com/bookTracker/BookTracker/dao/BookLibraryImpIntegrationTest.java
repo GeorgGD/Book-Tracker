@@ -80,4 +80,11 @@ public class BookLibraryImpIntegrationTest {
 		assertEquals(expectedNumOfBooks, updatedBooks.size());
 		assertEquals(expectedGenre, updatedBooks.get(0).getGenre());
 	}
+
+	@Test
+	public void availableID_CheckForAvailableId_GetAnAvailableId() {
+		int expectedAvailableId = 2;
+		
+		assertEquals(expectedAvailableId, bookLibrary.availableID());
+	}
 }
