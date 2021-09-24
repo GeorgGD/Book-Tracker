@@ -11,6 +11,6 @@ public class BookSearch {
 
 	private String id;
 	private String title;
-	private String auther;
+	private String author;
 	private String coverImg;
 }
