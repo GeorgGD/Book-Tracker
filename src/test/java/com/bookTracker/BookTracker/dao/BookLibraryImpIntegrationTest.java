@@ -45,7 +45,7 @@ public class BookLibraryImpIntegrationTest {
 	}
 
 	@Test
-	public void createBook_AddBookToDatabase_BookInDatabase() {
+	public void createBook_AddBookToDatabase_BookIsAddedToDatabase() {
 		int expectedNumOfBooks = 3;
 		String expectedName = "Hyperfocus";
 		String expectedAuthor = "Chris Bailey";
@@ -60,5 +60,24 @@ public class BookLibraryImpIntegrationTest {
 		assertEquals(expectedAuthor, books.get(2).getAuthor());
 
 		bookLibrary.deleteBook(bookForTesting.getId());		
+	}
+
+	@Test
+	public void updateBook_UpdateBookInDatabase_BookDataIsUpdated() {
+		int expectedNumOfBooks = 2;
+		String expectedGenre = "self help";
+
+		List<Book> books = bookLibrary.getAllEntries();
+		Book book = books.get(0);
+		
+		assertNotEquals(expectedGenre, book.getGenre());
+		
+		book.setGenre(expectedGenre);
+		bookLibrary.updateBook(book);
+
+		List<Book> updatedBooks = bookLibrary.getAllEntries();
+
+		assertEquals(expectedNumOfBooks, updatedBooks.size());
+		assertEquals(expectedGenre, updatedBooks.get(0).getGenre());
 	}
 }
