@@ -1,5 +1,12 @@
 package com.bookTracker.BookTracker.dao;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+
+import com.bookTracker.BookTracker.model.Book;
+
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,5 +18,21 @@ public class BookLibraryImpIntegrationTest {
 
 	@Autowired
 	private BookLibrary bookLibrary;
-	
+
+	@Test
+	public void getAllEntries_RetrievingBooks_ListOfBooks() {
+		int expectedNumOfBooks = 2;
+		int expectedFirstId = 1;
+		int expectedSecondId = 5;
+		String expectedBookName = "Turning the Flywheel";
+		String expectedAuthor = "Jim Collins";
+		
+		List<Book> books = bookLibrary.getAllEntries();
+
+		assertEquals(expectedNumOfBooks, books.size());
+		assertEquals(expectedFirstId, books.get(0).getId());
+		assertEquals(expectedSecondId, books.get(1).getId());
+		assertEquals(expectedBookName, books.get(1).getName());
+		assertEquals(expectedAuthor, books.get(1).getAuthor());
+	}
 }
