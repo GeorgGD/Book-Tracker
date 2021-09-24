@@ -6,19 +6,20 @@ import java.util.List;
 import com.bookTracker.BookTracker.model.Book;
 import com.bookTracker.BookTracker.repository.BooksRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * Handles all communications to the library database
  * @author Georgios Davakos
  * @since 2021-09-24
  */
+@RequiredArgsConstructor
 @Service
 public class BookLibraryImp implements BookLibrary {
 
-	@Autowired
-	private BooksRepository bookRepo;
+	private final BooksRepository bookRepo;
 	
 	/**
 	 * Retrieves all the entries from the database

@@ -30,7 +30,7 @@ public class Book {
 
 	@NotNull
 	private String name;    
-	private String auther;
+	private String author;
 	private String genre;
 	private boolean reading;
 	private Date completed_date;

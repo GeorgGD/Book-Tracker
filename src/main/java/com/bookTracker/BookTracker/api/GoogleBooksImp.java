@@ -24,7 +24,7 @@ import okhttp3.Response;
 
 /**
  * A google books api class that searches for books
- * @auther Georgios Davakos
+ * @author Georgios Davakos
  * @since 2021-09-14
  */
 @RequiredArgsConstructor
@@ -159,9 +159,9 @@ public class GoogleBooksImp implements GoogleBooks {
 			tmp = tmp.get("volumeInfo");
 			bookSearch.setTitle(tmp.get("title").asText());
 
-			JsonNode autherNode = tmp.get("authors");
-			if(autherNode != null)
-				bookSearch.setAuther(autherNode.get(0).asText());
+			JsonNode authorNode = tmp.get("authors");
+			if(authorNode != null)
+				bookSearch.setAuthor(authorNode.get(0).asText());
 			else
 				return Optional.ofNullable(null);
 			
@@ -211,7 +211,7 @@ public class GoogleBooksImp implements GoogleBooks {
 		Book book = new Book();
 		root = root.get("volumeInfo");
 		book.setName(root.get("title").asText());
-		book.setAuther(root.get("authors").get(0).asText());
+		book.setAuthor(root.get("authors").get(0).asText());
 	
 		JsonNode categoriesNode = root.get("categories");
 		if (categoriesNode != null) {
