@@ -5,8 +5,6 @@ import com.bookTracker.BookTracker.repository.BooksRepository;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class BookLibraryImpTest {
-
-	private static BooksRepository bookRepo;
+public class BookLibraryImpIntegrationTest {
 
 }
