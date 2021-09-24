@@ -42,8 +42,11 @@ public class BookLibraryImp implements BookLibrary {
 	 */
 	@Override
 	public void createBook(Book entry) {
-		// TODO Auto-generated method stub
-		
+	    try {
+			bookRepo.save(entry);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
