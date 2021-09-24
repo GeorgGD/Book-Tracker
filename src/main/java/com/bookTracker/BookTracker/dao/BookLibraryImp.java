@@ -1,9 +1,12 @@
 package com.bookTracker.BookTracker.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bookTracker.BookTracker.model.Book;
+import com.bookTracker.BookTracker.repository.BooksRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,14 +17,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookLibraryImp implements BookLibrary {
 
+	@Autowired
+	private BooksRepository bookRepo;
+	
 	/**
 	 * Retrieves all the entries from the database
 	 * @return All the books	
 	 */
 	@Override
 	public List<Book> getAllEntries() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Book> books = new ArrayList<>();
+		try {
+			bookRepo.findAll().forEach(books::add);
+		} catch (Exception e) {
+			e.printStackTrace();			
+		}
+		
+		return books;
 	}
 
 	/**
