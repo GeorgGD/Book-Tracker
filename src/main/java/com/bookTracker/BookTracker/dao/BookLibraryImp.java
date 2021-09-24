@@ -64,8 +64,11 @@ public class BookLibraryImp implements BookLibrary {
 	 */
 	@Override
 	public void deleteBook(Integer id) {
-		// TODO Auto-generated method stub
-		
+	    try {
+			bookRepo.deleteById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
    	/**
