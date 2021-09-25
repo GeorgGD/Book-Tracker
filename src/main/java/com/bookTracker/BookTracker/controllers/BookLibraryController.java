@@ -78,4 +78,14 @@ public class BookLibraryController {
 	public void addBookToRead(@RequestParam("id") String id) {
 	    saveBookIntoDatabase(id, false, null);
 	}
+
+	/**
+	 * Adds a book into book tracker database with \"reading\" status
+	 * @param id The Google Books API id of the book
+	 */
+	@RequestMapping("/reading")
+	@ResponseStatus(code = HttpStatus.OK)
+	public void addBookReading(@RequestParam("id") String id) {
+		saveBookIntoDatabase(id, true, null);
+	}
 }
