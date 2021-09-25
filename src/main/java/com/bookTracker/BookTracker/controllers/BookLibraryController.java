@@ -1,6 +1,7 @@
 package com.bookTracker.BookTracker.controllers;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -8,12 +9,11 @@ import java.util.OptionalDouble;
 import com.bookTracker.BookTracker.api.GoogleBooks;
 import com.bookTracker.BookTracker.dao.BookLibrary;
 import com.bookTracker.BookTracker.dto.BookSearch;
-import com.bookTracker.BookTracker.exceptions.BookNotFoundException;
 import com.bookTracker.BookTracker.model.Book;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import net.bytebuddy.implementation.bytecode.Throw;
@@ -51,6 +51,11 @@ public class BookLibraryController {
 		}
 	}
 
+	/**
+	 * Searching for a book based on the given full-text search	
+	 * @param query The full-text search query
+	 * @return A list of books that were found	
+	 */
 	@RequestMapping("/searchBook")
 	public List<BookSearch> searchForBook(@RequestParam("query") String query) {
 		query = query.replace(" ", "+");
@@ -59,7 +64,6 @@ public class BookLibraryController {
 		if(optional.isPresent()) 
 			return optional.get();
 		
-
-	   throw new BookNotFoundException(query);
+		return new ArrayList<BookSearch>();
 	}
 }
