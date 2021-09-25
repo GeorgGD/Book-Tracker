@@ -21,6 +21,13 @@ public interface BookLibrary {
 	public List<Book> getAllEntries();
 
 	/**
+	 * Retrieves a single book
+	 * @param id The id of the book
+	 * @return The book	
+	 */	
+	public Book getBook(int id);
+	
+	/**
 	 * Creates a book in the database
 	 * @param entry The book
 	 */
