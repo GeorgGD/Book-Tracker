@@ -108,4 +108,46 @@ public class BookLibraryController {
 	public void removeBook(@RequestParam("id") int id) {
 		bookLibrary.deleteBook(id);
 	}
+
+	/**
+	 * Changes the status of a book to \"to read\"
+	 * @param id The id of the book	
+	 */
+	@RequestMapping("/uodateToRead")
+	@ResponseStatus(code = HttpStatus.OK)
+	public void updateBookToRead(@RequestParam("id") int id) {
+		Book book = bookLibrary.getBook(id);
+		book.setReading(false);
+		book.setCompleted_date(null);
+
+		bookLibrary.updateBook(book);
+	}
+
+	/**
+	 * Changes the status of a book to \"reading\"
+	 * @param id The id of the book	
+	 */
+	@RequestMapping("/uodateReading")
+	@ResponseStatus(code = HttpStatus.OK)
+	public void updateBookToReading(@RequestParam("id") int id) {
+		Book book = bookLibrary.getBook(id);
+		book.setReading(true);
+		book.setCompleted_date(null);
+
+		bookLibrary.updateBook(book);
+	}
+
+	/**
+	 * Changes the status of a book to \"completed\"
+	 * @param id The id of the book	
+	 */
+	@RequestMapping("/uodateCompleted")
+	@ResponseStatus(code = HttpStatus.OK)
+	public void uopdateBookToCompleted(@RequestParam("id") int id) {
+		Book book = bookLibrary.getBook(id);
+		book.setReading(false);
+		book.setCompleted_date(new Date(System.currentTimeMillis()));
+
+		bookLibrary.updateBook(book);
+	}
 }
