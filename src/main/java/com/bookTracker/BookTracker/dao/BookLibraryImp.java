@@ -99,5 +99,15 @@ public class BookLibraryImp implements BookLibrary {
 		int idNotUsed = counter + 1;
 		return 0;
 	}
+
+	/**
+	 * Retrieves a single book
+	 * @param id The id of the book
+	 * @return The book	
+	 */	
+	@Override
+	public Book getBook(int id) {		
+		return bookRepo.findById(id).get();
+	}
 	
 }
