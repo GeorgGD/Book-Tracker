@@ -11,8 +11,10 @@ import com.bookTracker.BookTracker.dao.BookLibrary;
 import com.bookTracker.BookTracker.dto.BookSearch;
 import com.bookTracker.BookTracker.model.Book;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -65,5 +67,15 @@ public class BookLibraryController {
 			return optional.get();
 		
 		return new ArrayList<BookSearch>();
+	}
+
+	/**
+	 * Adds a book into book tracker database with \"to read\" status
+	 * @param id The Google Books API id of the book	
+	 */
+	@RequestMapping("/toRead")
+	@ResponseStatus(code = HttpStatus.OK)
+	public void addBookToRead(@RequestParam("id") String id) {
+	    saveBookIntoDatabase(id, false, null);
 	}
 }
