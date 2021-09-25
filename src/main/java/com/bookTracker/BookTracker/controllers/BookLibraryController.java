@@ -98,4 +98,14 @@ public class BookLibraryController {
 	public void addBookCompleted(@RequestParam("id") String id) {
 		saveBookIntoDatabase(id, false, new Date(System.currentTimeMillis()));
 	}
+
+	/**
+	 * Removes book with the given id from the book tracker database
+	 * @param id The id of the book	
+	 */
+	@RequestMapping("/delete")
+	@ResponseStatus(code = HttpStatus.OK)
+	public void removeBook(@RequestParam("id") int id) {
+		bookLibrary.deleteBook(id);
+	}
 }
