@@ -98,7 +98,7 @@ public class GoogleBooksImpTest {
 	public void searchBook_SearchForBook_FindBook() throws IOException {
 		int expectedSize = 1;
 		String expectedBookTitle = "Courage Is Calling";
-		String expectedBookAuther = "Ryan Holiday";
+		String expectedBookAuthor = "Ryan Holiday";
 		
 		Optional<List<BookSearch>> optional = googleBooksImp.searchBook("courage+is+calling");
 
@@ -112,7 +112,7 @@ public class GoogleBooksImpTest {
 
 		BookSearch bookSearch = listOfRetrievedBooks.get(0);
 		assertEquals(expectedBookTitle, bookSearch.getTitle());
-		assertEquals(expectedBookAuther, bookSearch.getAuther());
+		assertEquals(expectedBookAuthor, bookSearch.getAuthor());
 		assertNotNull(bookSearch.getCoverImg());
 	}
 
@@ -120,7 +120,7 @@ public class GoogleBooksImpTest {
 	public void bookInfo_SearchForSpecificBook_FindBook() throws IOException {
 		String nonsenseArg = "hi";
 		String expectedBookName = "Courage Is Calling";
-		String expectedBookAuther = "Ryan Holiday";
+		String expectedBookAuthor = "Ryan Holiday";
 
 		call.execute(); // Need to do this because we only want the second return value from this mock. 
 		
@@ -131,6 +131,6 @@ public class GoogleBooksImpTest {
 
 		Book book = optional.get();
 		assertEquals(expectedBookName, book.getName());
-		assertEquals(expectedBookAuther, book.getAuther());	    
+		assertEquals(expectedBookAuthor, book.getAuthor());	    
 	}
 }
