@@ -2,6 +2,7 @@ package com.bookTracker.BookTracker.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.bookTracker.BookTracker.model.Book;
 import com.bookTracker.BookTracker.repository.BooksRepository;
@@ -106,8 +107,8 @@ public class BookLibraryImp implements BookLibrary {
 	 * @return The book	
 	 */	
 	@Override
-	public Book getBook(int id) {		
-		return bookRepo.findById(id).get();
+	public Optional<Book> getBook(int id) {		
+		return bookRepo.findById(id);
 	}
 	
 }
