@@ -4,11 +4,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalDouble;
 
 import com.bookTracker.BookTracker.api.GoogleBooks;
 import com.bookTracker.BookTracker.dao.BookLibrary;
 import com.bookTracker.BookTracker.dto.BookSearch;
+import com.bookTracker.BookTracker.exceptions.BookNotFoundException;
 import com.bookTracker.BookTracker.model.Book;
 
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import net.bytebuddy.implementation.bytecode.Throw;
 
 /**
  * The following controller manages a book tracking system
@@ -31,8 +30,8 @@ import net.bytebuddy.implementation.bytecode.Throw;
 @RestController
 public class BookLibraryController {
 
-	private BookLibrary bookLibrary;
-	private GoogleBooks googleBooks;
+	private final BookLibrary bookLibrary;
+	private final GoogleBooks googleBooks;
 
 	/**
 	 * Saves a book from Google Books API into the database 
@@ -113,41 +112,56 @@ public class BookLibraryController {
 	 * Changes the status of a book to \"to read\"
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/uodateToRead")
+	@RequestMapping("/updateToRead")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void updateBookToRead(@RequestParam("id") int id) {
-		Book book = bookLibrary.getBook(id);
-		book.setReading(false);
-		book.setCompleted_date(null);
-
-		bookLibrary.updateBook(book);
+		Optional<Book> optional = bookLibrary.getBook(id);
+		if(optional.isPresent()) {
+			Book book = optional.get();
+			book.setReading(false);
+			book.setCompleted_date(null);
+			
+			bookLibrary.updateBook(book);
+		} else {
+			throw new BookNotFoundException(id);
+		}
 	}
 
 	/**
 	 * Changes the status of a book to \"reading\"
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/uodateReading")
+	@RequestMapping("/updateReading")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void updateBookToReading(@RequestParam("id") int id) {
-		Book book = bookLibrary.getBook(id);
-		book.setReading(true);
-		book.setCompleted_date(null);
-
-		bookLibrary.updateBook(book);
+		Optional<Book> optional = bookLibrary.getBook(id);
+		if(optional.isPresent()) {
+			Book book = optional.get();
+			book.setReading(true);
+			book.setCompleted_date(null);
+			
+			bookLibrary.updateBook(book);
+		} else {
+			throw new BookNotFoundException(id);
+		}
 	}
 
 	/**
 	 * Changes the status of a book to \"completed\"
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/uodateCompleted")
+	@RequestMapping("/updateCompleted")
 	@ResponseStatus(code = HttpStatus.OK)
-	public void uopdateBookToCompleted(@RequestParam("id") int id) {
-		Book book = bookLibrary.getBook(id);
-		book.setReading(false);
-		book.setCompleted_date(new Date(System.currentTimeMillis()));
+	public void updateBookToCompleted(@RequestParam("id") int id) {
+	    Optional<Book> optional = bookLibrary.getBook(id);
+		if (optional.isPresent()) {
+			Book book = optional.get();
+			book.setReading(false);
+			book.setCompleted_date(new Date(System.currentTimeMillis()));
 
-		bookLibrary.updateBook(book);
+			bookLibrary.updateBook(book);
+		} else {
+			throw new BookNotFoundException(id);
+		}
 	}
 }
