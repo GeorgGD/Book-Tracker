@@ -152,7 +152,7 @@ public class BookLibraryController {
 	 */
 	@RequestMapping("/updateCompleted")
 	@ResponseStatus(code = HttpStatus.OK)
-	public void uopdateBookToCompleted(@RequestParam("id") int id) {
+	public void updateBookToCompleted(@RequestParam("id") int id) {
 	    Optional<Book> optional = bookLibrary.getBook(id);
 		if (optional.isPresent()) {
 			Book book = optional.get();
