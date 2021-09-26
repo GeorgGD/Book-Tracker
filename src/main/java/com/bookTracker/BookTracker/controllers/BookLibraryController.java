@@ -31,8 +31,8 @@ import net.bytebuddy.implementation.bytecode.Throw;
 @RestController
 public class BookLibraryController {
 
-	private BookLibrary bookLibrary;
-	private GoogleBooks googleBooks;
+	private final BookLibrary bookLibrary;
+	private final GoogleBooks googleBooks;
 
 	/**
 	 * Saves a book from Google Books API into the database 
