@@ -114,7 +114,7 @@ public class BookLibraryController {
 	 * Changes the status of a book to \"to read\"
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/uodateToRead")
+	@RequestMapping("/updateToRead")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void updateBookToRead(@RequestParam("id") int id) {
 		Optional<Book> optional = bookLibrary.getBook(id);
@@ -133,7 +133,7 @@ public class BookLibraryController {
 	 * Changes the status of a book to \"reading\"
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/uodateReading")
+	@RequestMapping("/updateReading")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void updateBookToReading(@RequestParam("id") int id) {
 		Optional<Book> optional = bookLibrary.getBook(id);
@@ -152,7 +152,7 @@ public class BookLibraryController {
 	 * Changes the status of a book to \"completed\"
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/uodateCompleted")
+	@RequestMapping("/updateCompleted")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void uopdateBookToCompleted(@RequestParam("id") int id) {
 	    Optional<Book> optional = bookLibrary.getBook(id);
