@@ -9,6 +9,7 @@ import java.util.OptionalDouble;
 import com.bookTracker.BookTracker.api.GoogleBooks;
 import com.bookTracker.BookTracker.dao.BookLibrary;
 import com.bookTracker.BookTracker.dto.BookSearch;
+import com.bookTracker.BookTracker.exceptions.BookNotFoundException;
 import com.bookTracker.BookTracker.model.Book;
 
 import org.springframework.http.HttpStatus;
@@ -116,11 +117,16 @@ public class BookLibraryController {
 	@RequestMapping("/uodateToRead")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void updateBookToRead(@RequestParam("id") int id) {
-		Book book = bookLibrary.getBook(id);
-		book.setReading(false);
-		book.setCompleted_date(null);
-
-		bookLibrary.updateBook(book);
+		Optional<Book> optional = bookLibrary.getBook(id);
+		if(optional.isPresent()) {
+			Book book = optional.get();
+			book.setReading(false);
+			book.setCompleted_date(null);
+			
+			bookLibrary.updateBook(book);
+		} else {
+			throw new BookNotFoundException(id);
+		}
 	}
 
 	/**
@@ -130,11 +136,16 @@ public class BookLibraryController {
 	@RequestMapping("/uodateReading")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void updateBookToReading(@RequestParam("id") int id) {
-		Book book = bookLibrary.getBook(id);
-		book.setReading(true);
-		book.setCompleted_date(null);
-
-		bookLibrary.updateBook(book);
+		Optional<Book> optional = bookLibrary.getBook(id);
+		if(optional.isPresent()) {
+			Book book = optional.get();
+			book.setReading(true);
+			book.setCompleted_date(null);
+			
+			bookLibrary.updateBook(book);
+		} else {
+			throw new BookNotFoundException(id);
+		}
 	}
 
 	/**
@@ -144,10 +155,15 @@ public class BookLibraryController {
 	@RequestMapping("/uodateCompleted")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void uopdateBookToCompleted(@RequestParam("id") int id) {
-		Book book = bookLibrary.getBook(id);
-		book.setReading(false);
-		book.setCompleted_date(new Date(System.currentTimeMillis()));
+	    Optional<Book> optional = bookLibrary.getBook(id);
+		if (optional.isPresent()) {
+			Book book = optional.get();
+			book.setReading(false);
+			book.setCompleted_date(new Date(System.currentTimeMillis()));
 
-		bookLibrary.updateBook(book);
+			bookLibrary.updateBook(book);
+		} else {
+			throw new BookNotFoundException(id);
+		}
 	}
 }
