@@ -12,7 +12,6 @@ import com.bookTracker.BookTracker.dto.BookSearch;
 import com.bookTracker.BookTracker.model.Book;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +29,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class BookLibraryControllerIntegrationTest {
 
 	@Autowired
-	private static BookLibrary bookLibrary;
+	private BookLibrary bookLibrary;
 
-	private static BookLibraryController bookLibraryController;
-	private static GoogleBooks googleBooks;
-	private static MockMvc mockMvc;
+	private BookLibraryController bookLibraryController;
+	private GoogleBooks googleBooks;
+	private MockMvc mockMvc;
 
 	// Expected test results
 	private final static String expectedTitle = "Courage Is Calling";
@@ -66,9 +65,8 @@ public class BookLibraryControllerIntegrationTest {
 
 		return Optional.ofNullable(book);
 	}
-	
-	@BeforeAll
-	private static void setupController() {
+    
+	private void setupController() {
 		googleBooks = mock(GoogleBooks.class);
 		when(googleBooks.searchBook(any(String.class))).thenReturn(createList());
 		when(googleBooks.bookInfo(any(String.class))).thenReturn(createBook());
@@ -77,6 +75,7 @@ public class BookLibraryControllerIntegrationTest {
 
 	@BeforeEach
 	private void setupMockMvc() {
+		setupController();
 		mockMvc = MockMvcBuilders.standaloneSetup(bookLibraryController).build();
 	}
 
@@ -84,7 +83,7 @@ public class BookLibraryControllerIntegrationTest {
 	public void searchForBook_HttpRequestToEndpoint_ListOfBooks() {		
 		String endpoint = "/searchBook";
 		RequestBuilder request = get(endpoint)
-			.param("query", "Courage Is Calling");
+			.param("query", "Input is stubbed");
 		
 		try {
 			mockMvc.perform(request)
