@@ -96,4 +96,26 @@ public class BookLibraryControllerIntegrationTest {
 		    fail();
 		}
 	}
+
+	@Test
+	public void addBookToRead_HttpRequestToEndpoint_IncreaseNumberOfBooksInDatabase() {
+		int expectedSizeBeforeHttpRequest = 2;
+		int expectedSizeAfterHttpRequest = 3;
+		assertEquals(expectedSizeBeforeHttpRequest, bookLibrary.getAllEntries().size());
+		
+		String endpoint = "/toRead";
+		RequestBuilder request = get(endpoint)
+				.param("id", "Input is stubbed");
+
+		try {
+			mockMvc.perform(request)
+				.andExpect(status().isOk());
+			
+			assertEquals(expectedSizeAfterHttpRequest, bookLibrary.getAllEntries().size());
+			bookLibrary.deleteBook(expectedDatabaseId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 }
