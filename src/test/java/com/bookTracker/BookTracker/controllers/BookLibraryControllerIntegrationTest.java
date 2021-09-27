@@ -14,14 +14,20 @@ import com.bookTracker.BookTracker.model.Book;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
+
+@WebMvcTest(controllers = BookLibraryController.class)
 public class BookLibraryControllerIntegrationTest {
 
+	@Autowired
 	private static BookLibraryController bookLibraryController;
+
+	@MockBean
 	private static GoogleBooks googleBooks;
 
 	private static Optional<List<BookSearch>> createList() {
@@ -55,8 +61,6 @@ public class BookLibraryControllerIntegrationTest {
 		googleBooks = mock(GoogleBooks.class);
 		when(googleBooks.searchBook(any(String.class))).thenReturn(createList());
 		when(googleBooks.bookInfo(any(String.class))).thenReturn(createBook());
-
-		bookLibraryController = new BookLibraryController(new BookLibraryImp(), googleBooks);
 	}
 
 }
