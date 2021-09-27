@@ -11,13 +11,16 @@ import com.bookTracker.BookTracker.dao.BookLibrary;
 import com.bookTracker.BookTracker.dto.BookSearch;
 import com.bookTracker.BookTracker.model.Book;
 
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -33,13 +36,18 @@ public class BookLibraryControllerIntegrationTest {
 	private static GoogleBooks googleBooks;
 	private static MockMvc mockMvc;
 
+	// Expected test results
+	private final static String expectedTitle = "Courage Is Calling";
+	private final static String expectedAuthor = "Ryan Holiday";
+	private final static int expectedDatabaseId = 4;
+		
 	private static Optional<List<BookSearch>> createList() {
 		List<BookSearch> list = new ArrayList<>();
 		BookSearch bookSearch = new BookSearch();
 
 		bookSearch.setId("isMsEAAAQBAJ");
-		bookSearch.setTitle("Courage Is Calling");
-		bookSearch.setAuthor("Ryan Holiday");
+		bookSearch.setTitle(expectedTitle);
+		bookSearch.setAuthor(expectedAuthor);
 		bookSearch.setCoverImg("http://books.google.com/books/content?id=isMsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api");
 
 		list.add(bookSearch);
@@ -48,9 +56,9 @@ public class BookLibraryControllerIntegrationTest {
 	}
 
 	private static Optional<Book> createBook() {
-		Book book = new Book(4,
-							 "Courage Is Calling",
-							 "Ryan Holiday",
+		Book book = new Book(expectedDatabaseId,
+							 expectedTitle,
+							 expectedAuthor,
 							 "Business & Economics",
 							 false,
 							 null,
@@ -70,5 +78,23 @@ public class BookLibraryControllerIntegrationTest {
 	@BeforeEach
 	private void setupMockMvc() {
 		mockMvc = MockMvcBuilders.standaloneSetup(bookLibraryController).build();
+	}
+
+	@Test
+	public void searchForBook_HttpRequestToEndpoint_ListOfBooks() {		
+		String endpoint = "/searchBook";
+		RequestBuilder request = get(endpoint)
+			.param("query", "Courage Is Calling");
+		
+		try {
+			mockMvc.perform(request)
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$..title").value(expectedTitle))
+				.andExpect(jsonPath("$..author").value(expectedAuthor));
+		} catch (Exception e) {
+    		e.printStackTrace();
+		    fail();
+		}
 	}
 }
