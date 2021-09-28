@@ -149,8 +149,7 @@ public class BookLibraryControllerIntegrationTest {
 			mockMvc.perform(request)
 				.andExpect(status().isOk());
 
-			assertTrue(checkDatabaseSizeAfterHttpRequest());
-			
+			assertTrue(checkDatabaseSizeAfterHttpRequest());			
 			assertTrue(checkIfBookWasAddedToDatabase(false, null));
 			
 			resetDatabase();
@@ -172,8 +171,7 @@ public class BookLibraryControllerIntegrationTest {
 			mockMvc.perform(request)
 				.andExpect(status().isOk());
 
-			assertTrue(checkDatabaseSizeAfterHttpRequest());
-			
+			assertTrue(checkDatabaseSizeAfterHttpRequest());			
 			assertTrue(checkIfBookWasAddedToDatabase(true, null));
 			
 			resetDatabase();
