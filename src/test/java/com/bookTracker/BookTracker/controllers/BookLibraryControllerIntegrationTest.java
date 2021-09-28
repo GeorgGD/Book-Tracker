@@ -261,4 +261,30 @@ public class BookLibraryControllerIntegrationTest {
 			fail();
 		}
 	}
+
+	@Test
+	public void updateBookToCompleted_HttpRequestToEndpoint_UpdateBooksStatus() {
+		String expectedDate = (new Date(System.currentTimeMillis())).toString();
+		String endpoint = "/updateCompleted";
+		RequestBuilder request = get(endpoint)
+			.param("id", "1");
+
+		Book book = bookLibrary.getBook(1).get();
+		assertTrue(book.isReading());
+		
+		try {
+			mockMvc.perform(request)
+				.andExpect(status().isOk());
+
+			Book updatedBook = bookLibrary.getBook(1).get();
+			assertFalse(updatedBook.isReading());
+			assertEquals(expectedDate, updatedBook.getCompleted_date().toString());
+
+			updatedBook.setCompleted_date(null);
+			bookLibrary.updateBook(updatedBook);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 }
