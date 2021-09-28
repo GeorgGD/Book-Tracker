@@ -17,7 +17,9 @@ The following project is a digital library were books you have read, planning to
 - [[#final-words][Final Words]]
 :END:
 * General Info
+Book Tracker is a digital library for all book junkies. The application uses Google Books API to lookup what ever book you are interested in finding. Once you have found the book you were looking for, you simply add that book into your digital library.
 
+As of version 0.5 the application is simply a backend application with no frontend. The plan is to have a frontend by version 1.0 so you can get a better feel for the application and how it works. 
 * Technologies
 ** Frontend
 - HTML
@@ -46,6 +48,7 @@ As of *version 0.5* you will need the following technologies to launch the appli
    To test the application I recommend using "postman". Once the application reaches version 1.0 the application will have both a frontend and an backend.
 * Version Rules
 - For major changes use whole numbers, 1.x
-- For minor changes use tenth of a decimal, x.2
-- For features use hundredth of a decimal, x.x8
+- For features use hundredth of a decimal, x.2
+- For minor changes use tenth of a decimal, x.x8
 * Final Words
+It should be noted that version 1.0 will most likely utilize a lot of *server side rendering* while version 2.0 will be utilizing *client side rendering*. I have chosen to start with server side rendering just to play around with the concept and because I have never worked with client side rendering before.
