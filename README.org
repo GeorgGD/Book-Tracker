@@ -12,10 +12,12 @@ The following project is a digital library were books you have read, planning to
   - [[#backend][Backend]]
   - [[#tools][Tools]]
 - [[#launch][Launch]]
+  - [[#how-to-launch-the-application][How to launch the application]]
 - [[#version-rules][Version Rules]]
 - [[#final-words][Final Words]]
 :END:
 * General Info
+
 * Technologies
 ** Frontend
 - HTML
@@ -31,6 +33,17 @@ The following project is a digital library were books you have read, planning to
 ** Tools
 - Maven
 * Launch
+As of *version 0.5* you will need the following technologies to launch the application.
+
+- Java 11
+- Maven
+
+** How to launch the application
+1. Open up your terminal and type “mvn dependency:resolve”. This will download all the dependencies (libraries) used by this project. Once that is done, type “mvn clean package”. This will compile the project into an executable file found inside a directory named “target”. The target directory will be created by maven.
+2. To run the application type "java -jar /target/BookTracker-0.0.1-SNAPSHOT.jar".
+3. To see that it is running go to your browser and type "localhost:8080/searchBook?query=art+of+war".
+
+   To test the application I recommend using "postman". Once the application reaches version 1.0 the application will have both a frontend and an backend.
 * Version Rules
 - For major changes use whole numbers, 1.x
 - For minor changes use tenth of a decimal, x.2
