@@ -73,6 +73,23 @@ public class BookLibraryControllerIntegrationTest {
 		bookLibraryController = new BookLibraryController(bookLibrary, googleBooks);
 	}
 
+	// Checks that the database only has 2 books.
+	// If it has more or well books it returns false!
+	private boolean checkDatabaseSizeBeforeHttpRequest() {
+		int expectedSize = 2;
+		return expectedSize == bookLibrary.getAllEntries().size();
+
+	}
+
+	// Checks that the database only has 3 books.
+	// If it has more or well books it returns false!
+	private boolean checkDatabaseSizeAfterHttpRequest() {
+		int expectedSize = 3;
+		return expectedSize == bookLibrary.getAllEntries().size();
+
+	}
+
+	
 	@BeforeEach
 	private void setupMockMvc() {
 		setupController();
@@ -98,25 +115,55 @@ public class BookLibraryControllerIntegrationTest {
 	}
 
 	@Test
-	public void addBookToRead_HttpRequestToEndpoint_IncreaseNumberOfBooksInDatabase() {
-		int expectedSizeBeforeHttpRequest = 2;
-		int expectedSizeAfterHttpRequest = 3;
-		assertEquals(expectedSizeBeforeHttpRequest, bookLibrary.getAllEntries().size());
-		
+	public void addBookToRead_HttpRequestToEndpoint_IncreaseNumberOfBooksInDatabase() {	    	  		
 		String endpoint = "/toRead";
 		RequestBuilder request = get(endpoint)
 			.param("id", "Input is stubbed");
+		
+		assertTrue(checkDatabaseSizeBeforeHttpRequest());
 
 		try {
 			mockMvc.perform(request)
 				.andExpect(status().isOk());
 
-			assertEquals(expectedSizeAfterHttpRequest, bookLibrary.getAllEntries().size());
+			assertTrue(checkDatabaseSizeAfterHttpRequest());
+			
 			for(Book book : bookLibrary.getAllEntries()) {
 				if(book.getId() == expectedDatabaseId) {
 					assertEquals(expectedTitle, book.getName());
 					assertEquals(expectedAuthor, book.getAuthor());
 					assertFalse(book.isReading());
+					assertNull(book.getCompleted_date());
+					break;
+				}
+			}
+			
+			bookLibrary.deleteBook(expectedDatabaseId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	@Test
+	public void addBookReading_HttpRequestToEndpoint_IncreaseNumberOfBooksInDatabase() {
+		String endpoint = "/reading";
+		RequestBuilder request = get(endpoint)
+			.param("id", "Input is stubbed");
+
+		assertTrue(checkDatabaseSizeBeforeHttpRequest());
+
+		try {
+			mockMvc.perform(request)
+				.andExpect(status().isOk());
+
+			assertTrue(checkDatabaseSizeAfterHttpRequest());
+			
+			for(Book book : bookLibrary.getAllEntries()) {
+				if(book.getId() == expectedDatabaseId) {
+					assertEquals(expectedTitle, book.getName());
+					assertEquals(expectedAuthor, book.getAuthor());
+					assertTrue(book.isReading());
 					assertNull(book.getCompleted_date());
 					break;
 				}
