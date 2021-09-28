@@ -105,7 +105,13 @@ public class BookLibraryControllerIntegrationTest {
 				assertEquals(expectedTitle, book.getName());
 				assertEquals(expectedAuthor, book.getAuthor());
 				assertEquals(expectedReadingStatus, book.isReading());
-				assertEquals(expectedDate, book.getCompleted_date());
+				
+				if (expectedDate == null) {
+					assertEquals(expectedDate, book.getCompleted_date());
+				} else {
+					assertEquals(expectedDate.toString(), book.getCompleted_date().toString());
+				}
+				
 				return true;
 			}
 		}
@@ -183,6 +189,28 @@ public class BookLibraryControllerIntegrationTest {
 			fail();
 		} finally {
 			resetDatabase();
+		}
+	}
+
+	@Test
+	public void addBookCompleted_HttpRequestToEndpoint_IncreaseNumberOfBooksInDatabase() {
+		String endpoint = "/completed";
+		RequestBuilder request = get(endpoint)
+			.param("id", "Input is stubbed");
+
+	    checkDatabaseSizeBeforeHttpRequest();
+
+		try {
+			mockMvc.perform(request)
+				.andExpect(status().isOk());
+			
+			assertTrue(checkDatabaseSizeAfterHttpRequest());			
+			assertTrue(checkIfBookWasAddedToDatabase(false, new Date(System.currentTimeMillis())));
+			
+			resetDatabase();
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
 		}
 	}
 }
