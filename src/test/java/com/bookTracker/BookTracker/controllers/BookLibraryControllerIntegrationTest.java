@@ -238,4 +238,27 @@ public class BookLibraryControllerIntegrationTest {
 		}
 	}
 
+	@Test
+	public void updateBookToReading_HttpRequestToEndpoint_UpdateBooksStatus() {
+		String endpoint = "/updateReading";
+		RequestBuilder request = get(endpoint)
+			.param("id", "1");
+
+		Book book = bookLibrary.getBook(1).get();
+		assertTrue(book.isReading());
+
+		try {
+			mockMvc.perform(request)
+				.andExpect(status().isOk());
+
+			Book updatedBook = bookLibrary.getBook(1).get();
+			assertTrue(updatedBook.isReading());
+
+			updatedBook.setReading(true);
+			bookLibrary.updateBook(updatedBook);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 }
