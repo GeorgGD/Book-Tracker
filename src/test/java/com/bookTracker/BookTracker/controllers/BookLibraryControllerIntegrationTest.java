@@ -110,8 +110,18 @@ public class BookLibraryControllerIntegrationTest {
 		try {
 			mockMvc.perform(request)
 				.andExpect(status().isOk());
-			
+
 			assertEquals(expectedSizeAfterHttpRequest, bookLibrary.getAllEntries().size());
+			for(Book book : bookLibrary.getAllEntries()) {
+				if(book.getId() == expectedDatabaseId) {
+					assertEquals(expectedTitle, book.getName());
+					assertEquals(expectedAuthor, book.getAuthor());
+					assertFalse(book.isReading());
+					assertNull(book.getCompleted_date());
+					break;
+				}
+			}
+			
 			bookLibrary.deleteBook(expectedDatabaseId);
 		} catch (Exception e) {
 			e.printStackTrace();
