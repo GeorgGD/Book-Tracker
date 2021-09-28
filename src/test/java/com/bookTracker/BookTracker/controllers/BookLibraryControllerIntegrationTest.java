@@ -2,6 +2,7 @@ package com.bookTracker.BookTracker.controllers;
 
 import static org.mockito.Mockito.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -89,6 +90,28 @@ public class BookLibraryControllerIntegrationTest {
 
 	}
 
+	/**
+	 * Checks if a book was added to the database after performing an HTTP request
+	 * @param expectedReadingStatus True if book status is reading
+	 * @param expectedDate The date the book was completed
+	 * @return True if the book was found in the database with the correct status	
+	 */
+	private boolean checkIfBookWasAddedToDatabase(boolean expectedReadingStatus, Date expectedDate) {
+		for(Book book : bookLibrary.getAllEntries()) {
+			if(book.getId() == expectedDatabaseId) {
+				assertEquals(expectedTitle, book.getName());
+				assertEquals(expectedAuthor, book.getAuthor());
+				assertEquals(expectedReadingStatus, book.isReading());
+				assertEquals(expectedDate, book.getCompleted_date());
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void resetDatabase() {
+		bookLibrary.deleteBook(expectedDatabaseId);
+	}
 	
 	@BeforeEach
 	private void setupMockMvc() {
@@ -128,17 +151,9 @@ public class BookLibraryControllerIntegrationTest {
 
 			assertTrue(checkDatabaseSizeAfterHttpRequest());
 			
-			for(Book book : bookLibrary.getAllEntries()) {
-				if(book.getId() == expectedDatabaseId) {
-					assertEquals(expectedTitle, book.getName());
-					assertEquals(expectedAuthor, book.getAuthor());
-					assertFalse(book.isReading());
-					assertNull(book.getCompleted_date());
-					break;
-				}
-			}
+			assertTrue(checkIfBookWasAddedToDatabase(false, null));
 			
-			bookLibrary.deleteBook(expectedDatabaseId);
+			resetDatabase();
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
@@ -159,17 +174,9 @@ public class BookLibraryControllerIntegrationTest {
 
 			assertTrue(checkDatabaseSizeAfterHttpRequest());
 			
-			for(Book book : bookLibrary.getAllEntries()) {
-				if(book.getId() == expectedDatabaseId) {
-					assertEquals(expectedTitle, book.getName());
-					assertEquals(expectedAuthor, book.getAuthor());
-					assertTrue(book.isReading());
-					assertNull(book.getCompleted_date());
-					break;
-				}
-			}
+			assertTrue(checkIfBookWasAddedToDatabase(true, null));
 			
-			bookLibrary.deleteBook(expectedDatabaseId);
+			resetDatabase();
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
