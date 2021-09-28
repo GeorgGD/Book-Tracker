@@ -76,9 +76,12 @@ public class BookLibraryControllerIntegrationTest {
 
 	// Checks that the database only has 2 books.
 	// If it has more or well books it returns false!
-	private boolean checkDatabaseSizeBeforeHttpRequest() {
+	private void checkDatabaseSizeBeforeHttpRequest() {
 		int expectedSize = 2;
-		return expectedSize == bookLibrary.getAllEntries().size();
+		if (expectedSize == bookLibrary.getAllEntries().size())
+			return;
+		else
+			resetDatabase();
 
 	}
 
@@ -143,7 +146,7 @@ public class BookLibraryControllerIntegrationTest {
 		RequestBuilder request = get(endpoint)
 			.param("id", "Input is stubbed");
 		
-		assertTrue(checkDatabaseSizeBeforeHttpRequest());
+	    checkDatabaseSizeBeforeHttpRequest();
 
 		try {
 			mockMvc.perform(request)
@@ -152,10 +155,11 @@ public class BookLibraryControllerIntegrationTest {
 			assertTrue(checkDatabaseSizeAfterHttpRequest());			
 			assertTrue(checkIfBookWasAddedToDatabase(false, null));
 			
-			resetDatabase();
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
+		} finally {
+			resetDatabase();
 		}
 	}
 
@@ -165,7 +169,7 @@ public class BookLibraryControllerIntegrationTest {
 		RequestBuilder request = get(endpoint)
 			.param("id", "Input is stubbed");
 
-		assertTrue(checkDatabaseSizeBeforeHttpRequest());
+	    checkDatabaseSizeBeforeHttpRequest();
 
 		try {
 			mockMvc.perform(request)
@@ -174,10 +178,11 @@ public class BookLibraryControllerIntegrationTest {
 			assertTrue(checkDatabaseSizeAfterHttpRequest());			
 			assertTrue(checkIfBookWasAddedToDatabase(true, null));
 			
-			resetDatabase();
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
+		} finally {
+			resetDatabase();
 		}
 	}
 }
