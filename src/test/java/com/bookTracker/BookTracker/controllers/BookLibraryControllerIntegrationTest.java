@@ -38,7 +38,7 @@ public class BookLibraryControllerIntegrationTest {
 	// Expected test results
 	private final static String expectedTitle = "Courage Is Calling";
 	private final static String expectedAuthor = "Ryan Holiday";
-	private final static int expectedDatabaseId = 4;
+	private final static int expectedDatabaseId = 2;
 		
 	private static Optional<List<BookSearch>> createList() {
 		List<BookSearch> list = new ArrayList<>();
@@ -55,7 +55,7 @@ public class BookLibraryControllerIntegrationTest {
 	}
 
 	private static Optional<Book> createBook() {
-		Book book = new Book(expectedDatabaseId,
+		Book book = new Book(4,
 							 expectedTitle,
 							 expectedAuthor,
 							 "Business & Economics",
@@ -105,7 +105,7 @@ public class BookLibraryControllerIntegrationTest {
 		
 		String endpoint = "/toRead";
 		RequestBuilder request = get(endpoint)
-				.param("id", "Input is stubbed");
+			.param("id", "Input is stubbed");
 
 		try {
 			mockMvc.perform(request)
