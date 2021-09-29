@@ -32,7 +32,7 @@ import okhttp3.Response;
 public class GoogleBooksImp implements GoogleBooks {
 
 	@Value("${google.api.key: no-key}")
-	private static String API_KEY;
+	private String API_KEY;
 
 	private final OkHttpClient client;
 

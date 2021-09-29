@@ -12,10 +12,14 @@ The following project is a digital library were books you have read, planning to
   - [[#backend][Backend]]
   - [[#tools][Tools]]
 - [[#launch][Launch]]
+  - [[#how-to-launch-the-application][How to launch the application]]
 - [[#version-rules][Version Rules]]
 - [[#final-words][Final Words]]
 :END:
 * General Info
+Book Tracker is a digital library for all book junkies. The application uses Google Books API to lookup what ever book you are interested in finding. Once you have found the book you were looking for, you simply add that book into your digital library.
+
+As of version 0.5 the application is simply a backend application with no frontend. The plan is to have a frontend by version 1.0 so you can get a better feel for the application and how it works. 
 * Technologies
 ** Frontend
 - HTML
@@ -31,8 +35,20 @@ The following project is a digital library were books you have read, planning to
 ** Tools
 - Maven
 * Launch
+As of *version 0.5* you will need the following technologies to launch the application.
+
+- Java 11
+- Maven
+
+** How to launch the application
+1. Open up your terminal and type “mvn dependency:resolve”. This will download all the dependencies (libraries) used by this project. Once that is done, type “mvn clean package”. This will compile the project into an executable file found inside a directory named “target”. The target directory will be created by maven.
+2. To run the application type "java -jar /target/BookTracker-0.0.1-SNAPSHOT.jar".
+3. To see that it is running go to your browser and type "localhost:8080/searchBook?query=art+of+war".
+
+   To test the application I recommend using "postman". Once the application reaches version 1.0 the application will have both a frontend and an backend.
 * Version Rules
 - For major changes use whole numbers, 1.x
-- For minor changes use tenth of a decimal, x.2
-- For features use hundredth of a decimal, x.x8
+- For features use hundredth of a decimal, x.2
+- For minor changes use tenth of a decimal, x.x8
 * Final Words
+It should be noted that version 1.0 will most likely utilize a lot of *server side rendering* while version 2.0 will be utilizing *client side rendering*. I have chosen to start with server side rendering just to play around with the concept and because I have never worked with client side rendering before.
