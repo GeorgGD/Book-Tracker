@@ -98,7 +98,7 @@ public class BookLibraryImp implements BookLibrary {
 		}
 
 		int idNotUsed = counter + 1;
-		return 0;
+		return idNotUsed;
 	}
 
 	/**
