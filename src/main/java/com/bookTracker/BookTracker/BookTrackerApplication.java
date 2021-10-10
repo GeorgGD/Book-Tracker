@@ -21,11 +21,6 @@ public class BookTrackerApplication {
 	public ObjectMapper mapper() {
 		return new ObjectMapper();
 	}
-
-	@Bean
-	public RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BookTrackerApplication.class, args);
