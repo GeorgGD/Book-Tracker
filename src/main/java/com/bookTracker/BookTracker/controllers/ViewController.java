@@ -62,7 +62,7 @@ public class ViewController {
 	 * @param query The full-text search query
 	 * @return A list of books that were found	
 	 */
-	@RequestMapping("/searchBook")
+	@RequestMapping("/tempSearchBook")
 	public List<BookSearch> searchForBook(@RequestParam("query") String query) {
 		query = query.replace(" ", "+");
 		Optional<List<BookSearch>> optional = googleBooks.searchBook(query);
@@ -77,7 +77,7 @@ public class ViewController {
 	 * Adds a book into book tracker database with \"to read\" status
 	 * @param id The Google Books API id of the book	
 	 */
-	@RequestMapping("/toRead")
+	@RequestMapping("/tempToRead")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void addBookToRead(@RequestParam("id") String id) {
 	    saveBookIntoDatabase(id, false, null);
@@ -87,7 +87,7 @@ public class ViewController {
 	 * Adds a book into book tracker database with \"reading\" status
 	 * @param id The Google Books API id of the book
 	 */
-	@RequestMapping("/reading")
+	@RequestMapping("/tempReading")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void addBookReading(@RequestParam("id") String id) {
 		saveBookIntoDatabase(id, true, null);
@@ -97,7 +97,7 @@ public class ViewController {
 	 * Adds a book int obook tracker database with \"completed\" status
 	 * @param id The Google Books API id of the book
 	 */
-	@RequestMapping("/completed")
+	@RequestMapping("/tempCompleted")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void addBookCompleted(@RequestParam("id") String id) {
 		saveBookIntoDatabase(id, false, new Date(System.currentTimeMillis()));
@@ -107,7 +107,7 @@ public class ViewController {
 	 * Removes book with the given id from the book tracker database
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/delete")
+	@RequestMapping("/tempDelete")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void removeBook(@RequestParam("id") int id) {
 		bookLibrary.deleteBook(id);
@@ -117,7 +117,7 @@ public class ViewController {
 	 * Changes the status of a book to \"to read\"
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/updateToRead")
+	@RequestMapping("/tempUpdateToRead")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void updateBookToRead(@RequestParam("id") int id) {
 		Optional<Book> optional = bookLibrary.getBook(id);
@@ -136,7 +136,7 @@ public class ViewController {
 	 * Changes the status of a book to \"reading\"
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/updateReading")
+	@RequestMapping("/tempUpdateReading")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void updateBookToReading(@RequestParam("id") int id) {
 		Optional<Book> optional = bookLibrary.getBook(id);
@@ -155,7 +155,7 @@ public class ViewController {
 	 * Changes the status of a book to \"completed\"
 	 * @param id The id of the book	
 	 */
-	@RequestMapping("/updateCompleted")
+	@RequestMapping("/tempUpdateCompleted")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void updateBookToCompleted(@RequestParam("id") int id) {
 	    Optional<Book> optional = bookLibrary.getBook(id);
@@ -174,7 +174,7 @@ public class ViewController {
 	 * Provides a list of all books currently in the database
 	 * @return A list of all the books in the database
 	 */
-	@RequestMapping("/currentBooks")
+	@RequestMapping("/tempCurrentBooks")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Book> booksInDatabase() {
 	    return bookLibrary.getAllEntries();
