@@ -164,4 +164,14 @@ public class BookLibraryController {
 			throw new BookNotFoundException(id);
 		}
 	}
+
+	/**
+	 * Provides a list of all books currently in the database
+	 * @return A list of all the books in the database
+	 */
+	@RequestMapping("/currentBooks")
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<Book> booksInDatabase() {
+	    return bookLibrary.getAllEntries();
+	}
 }
