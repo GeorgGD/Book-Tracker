@@ -25,18 +25,27 @@
 	      </div>
 	      <div class="row mx-2">
 
-		<div class="col-12 col-sm-6 col-lg-4 my-2">
-		  <div class="card dark-text h-100 d-flex flex-column">
-		    <img src="" class="card-img-top" alt="book cover">		    
-		    <div class="mt-auto">
-		      <div class="card-body">
-			<h5 class="card-title">Book Title</h5>
-			<p class="card-text mt-1">Author: Firstname Lastname</p>
-			<button type="button" class="btn btn-red text-white fw-bold">Actions</button>
+		<th:block th:each="book : ${searchResult}">
+		  <div class="col-12 col-sm-6 col-lg-4 my-2">
+		    <div class="card dark-text h-100 d-flex flex-column">
+		      <img th:src="${book.coverImg}" class="card-img-top" alt="book cover">		    
+		      <div class="mt-auto">
+			<div class="card-body">
+			  <h5 class="card-title" th:text="${book.title}"></h5>
+			  <p class="card-text mt-1">Author: <span th:text="${book.author}"></span></p>
+			  <div class="dropdown">
+			    <button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" type="button" id="searchBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+			    <ul class="dropdown-menu" aria-labelledby="searchBookActions">
+			      <li><a class="dropdown-item" href="/tempToRead">To Read</a></li>
+			      <li><a class="dropdown-item" href="/tempReading">Reading</a></li>
+			      <li><a class="dropdown-item" href="/tempCompleted">Completed</a></li>
+			      </ul>
+			  </div>
+			</div>
 		      </div>
 		    </div>
 		  </div>
-		</div>
+		</th:block>
 		
 	      </div>
 	    </div>
@@ -50,7 +59,7 @@
       <section class="search">
 	<div class="container">
 	  <div class="book-tracker-box">
-	    <form class="form" action="/searchBook" method="get">
+	    <form class="form" action="/tempSearchBook" method="get">
 	      <div class="input-group  d-flex justify-content-center">	    
 		<input class="form-control border-1" name="query" type="text" placeholder="Search for...">
 		<div class="input-group-append">
