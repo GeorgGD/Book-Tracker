@@ -73,7 +73,9 @@ public class ViewController {
 		Optional<List<BookSearch>> optional = googleBooks.searchBook(query);
 
 		if(optional.isPresent()) {
-			model.addAttribute("searchResult", optional.get());		
+			model.addAttribute("searchResult", optional.get());
+			List<Book> books = bookLibrary.getAllEntries();
+			model.addAttribute("books", books);
 			return "withBooks";
 		} 
 			
