@@ -17,40 +17,7 @@
 	      Book Tracker is a digital library for all book junkies. The application uses Google Books API to lookup what ever book you are interested in finding. Once you have found the book you were looking for, you simply add that book into your digital library.
 	    </p>
 	  </div>
-
-	  <div class="col-12 col-md-8 my-5 overflow-auto">
-	    <div class="card">
-	      <div class="card-header fw-bold text-red">
-		Search Results
-	      </div>
-	      <div class="row mx-2">
-
-		<th:block th:each="book : ${searchResult}">
-		  <div class="col-12 col-sm-6 col-lg-4 my-2">
-		    <div class="card dark-text h-100 d-flex flex-column">
-		      <img th:src="${book.coverImg}" class="card-img-top" alt="book cover">		    
-		      <div class="mt-auto">
-			<div class="card-body">
-			  <h5 class="card-title" th:text="${book.title}"></h5>
-			  <p class="card-text mt-1">Author: <span th:text="${book.author}"></span></p>
-			  <div class="dropdown">
-			    <button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" id="searchBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
-			    <ul class="dropdown-menu" aria-labelledby="searchBookActions">
-			      <li><a class="dropdown-item" th:href="'/tempToRead?id=' + ${book.id}">To Read</a></li>
-			      <li><a class="dropdown-item" th:href="'/tempReading?id=' + ${book.id}">Reading</a></li>
-			      <li><a class="dropdown-item" th:href="'/tempCompleted?id=' + ${book.id}">Completed</a></li>
-			      </ul>
-			  </div>
-			</div>
-		      </div>
-		    </div>
-		  </div>
-		</th:block>
-		
-	      </div>
-	    </div>
-	  </div>
-	  
+	  	  
 	</div>
       </div>
     </header>
@@ -75,7 +42,42 @@
 
       <section class="books-library">
 	<div class="container">
-	  <div class="books-container mt-3">
+	  <div class="row">
+	    <div class="col-12 col-md-12 my-5">
+	    <div class="card">
+	      <div class="card-header fw-bold text-primary">
+		Search Results
+	      </div>
+	      <div class="row mx-2">
+
+		<th:block th:each="book : ${searchResult}">
+		  <div class="col-12 col-sm-6 col-lg-3 my-2">
+		    <div class="card dark-text h-100 d-flex flex-column">
+		      <img th:src="${book.coverImg}" class="card-img-top" alt="book cover">		    
+		      <div class="mt-auto">
+			<div class="card-body">
+			  <h5 class="card-title" th:text="${book.title}"></h5>
+			  <p class="card-text mt-1">Author: <span th:text="${book.author}"></span></p>
+			  <div class="dropdown">
+			    <button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" id="searchBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+			    <ul class="dropdown-menu" aria-labelledby="searchBookActions">
+			      <li><a class="dropdown-item" th:href="'/tempToRead?id=' + ${book.id}">To Read</a></li>
+			      <li><a class="dropdown-item" th:href="'/tempReading?id=' + ${book.id}">Reading</a></li>
+			      <li><a class="dropdown-item" th:href="'/tempCompleted?id=' + ${book.id}">Completed</a></li>
+			    </ul>
+			  </div>
+			</div>
+		      </div>
+		    </div>
+		  </div>
+		</th:block>
+		
+	      </div>
+	    </div>
+	    </div>
+	  </div>
+	  
+	  <div class="books-container mt-3 mb-5">
 	    <div class="card">
 	      <div class="card-header fw-bold text-red">
 		Books in your library
