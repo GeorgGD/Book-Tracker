@@ -1,0 +1,70 @@
+@font-face {
+  font-family: "alisandra";
+  src: url(../fonts/alisandra-demo.ttf);
+}
+#hero {
+  margin-bottom: -40px;
+  height: 70vh;
+  min-height: 45rem;
+  background: linear-gradient(to bottom, rgba(99, 0, 0, 0.8) 0%, rgba(99, 0, 0, 0.8) 100%), url(../img/workspace-1280538.jpg) no-repeat center;
+  background-size: cover;
+  z-index: 99;
+}
+
+#main {
+  padding-top: 0;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial;
+}
+
+nav p {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+header.bg-img {
+  position: relative;
+}
+
+.font-alisandra {
+  font-family: alisandra;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.book-tracker-box {
+  padding: 40px 30px;
+}
+
+.form-control {
+  border-radius: 1rem;
+  max-width: 500px;
+}
+
+.btn-edges {
+  border-radius: 0.4rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.btn-red {
+  border-radius: 0.3rem;
+}
+
+/*# sourceMappingURL=stylesheet.css.map */
