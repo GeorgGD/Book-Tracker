@@ -59,7 +59,7 @@
 		      <p class="card-text">Genre: <span th:text="${book.genre}"></span></p>
 		      <p class="card-text">Status: <span th:text="${book.completed_date} + ' ' + ${book.reading}"></span></p>
 		      <div class="dropdown">
-			<button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" type="button" id="libraryBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+			<button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" id="libraryBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
 			<ul class="dropdown-menu" aria-labelledby="libraryBookActions">
 			  <li><a class="dropdown-item" href="/tempUpdateToRead">To Read</a></li>
 			  <li><a class="dropdown-item" href="/tempUpdateReading">Reading</a></li>

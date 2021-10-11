@@ -34,7 +34,7 @@
 			  <h5 class="card-title" th:text="${book.title}"></h5>
 			  <p class="card-text mt-1">Author: <span th:text="${book.author}"></span></p>
 			  <div class="dropdown">
-			    <button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" type="button" id="searchBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+			    <button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" id="searchBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
 			    <ul class="dropdown-menu" aria-labelledby="searchBookActions">
 			      <li><a class="dropdown-item" href="/tempToRead">To Read</a></li>
 			      <li><a class="dropdown-item" href="/tempReading">Reading</a></li>
@@ -93,7 +93,7 @@
 			  <p class="card-text">Genre: <span th:text="${book.genre}"></span></p>
 			  <p class="card-text">Status: <span th:text="${book.completed_date} + ' ' + ${book.reading}"></span></p>
 			  <div class="dropdown">
-			    <button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" type="button" id="libraryBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+			    <button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" id="libraryBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
 			    <ul class="dropdown-menu" aria-labelledby="libraryBookActions">
 			      <li><a class="dropdown-item" href="/tempUpdateToRead">To Read</a></li>
 			      <li><a class="dropdown-item" href="/tempUpdateReading">Reading</a></li>
