@@ -1,0 +1,43 @@
+body {
+  color: #FFF;
+  background-color: #FFF;
+}
+
+.book-tracker-box {
+  color: #1B1717;
+  background-color: #FFF;
+  box-shadow: 5px 10px 29px 0 rgba(68, 88, 144, 0.2);
+  border-radius: 1rem;
+}
+
+.btn-primary {
+  color: #FFF;
+  background-color: #810000;
+  border-color: #810000;
+}
+.btn-primary:hover {
+  background-color: #630000;
+  border-color: #630000;
+}
+
+.nav-bg {
+  background-color: rgba(27, 23, 23, 0.4);
+}
+
+.text-lighter {
+  color: #FFF;
+}
+
+.text-red {
+  color: #810000;
+}
+
+.dark-text {
+  color: #1B1717;
+}
+
+.btn-red {
+  background-color: #810000;
+}
+
+/*# sourceMappingURL=colours.css.map */

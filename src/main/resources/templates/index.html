@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <link rel="stylesheet" href="/css/colours.css">
+    <script src="https://kit.fontawesome.com/2994acdae5.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header id="hero" class="bg-img">     
+      <div class="container d-flex h-100">
+	<div class="row align-self-center">
+	  <div class="col-4 m-5 text-center">
+	    <h1 class="fw-bold">BOOK TRACKER</h1>
+	    <p>
+	      Book Tracker is a digital library for all book junkies. The application uses Google Books API to lookup what ever book you are interested in finding. Once you have found the book you were looking for, you simply add that book into your digital library.
+	    </p>
+	  </div>
+	</div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="search">
+	<div class="container">
+	  <div class="book-tracker-box">
+	    <form class="form" action="/tempSearchBook" method="get">
+	      <div class="input-group  d-flex justify-content-center">	    
+		<input class="form-control border-1" name="query" type="text" placeholder="Search for...">
+		<div class="input-group-append">
+		  <button class="btn btn-info btn-edges" type="submit">
+                    <i class="fas fa-search fa-sm text-lighter"></i>
+		  </button>
+		</div>
+	      </div>
+	    </form>
+	  </div>
+	</div>
+      </section>
+
+      <section class="books-library">
+	<div class="container">
+	  <div class="books-container mt-3 mb-5">
+	    <div class="card">
+	      <div class="card-header fw-bold text-red">
+		Books in your library
+	      </div>
+	      <div class="row mx-2">
+
+		<th:block th:each="book : ${books}">
+		<div class="col-12 col-sm-6 col-lg-3 mt-2 mb-1">
+		  <div class="card dark-text h-100 d-flex flex-column">
+		    <img th:src="${book.cover_img}" class="card-img-top" alt="book cover">
+		    <div class="mt-auto">
+		      <div class="card-body">
+		      <h5 class="card-title" th:text="${book.name}"></h5>
+		      <p class="card-text">Author: <span th:text="${book.author}"></span></p>
+		      <p class="card-text">Genre: <span th:text="${book.genre}"></span></p>
+		      <p class="card-text">Status: <span th:text="${book.completed_date} + ' ' + ${book.reading}"></span></p>
+		      <div class="dropdown">
+			<button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" id="libraryBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+			<ul class="dropdown-menu" aria-labelledby="libraryBookActions">
+			  <li><a class="dropdown-item" th:href="'/tempUpdateToRead?id=' + ${book.id}">To Read</a></li>
+			  <li><a class="dropdown-item" th:href="'/tempUpdateReading?id=' + ${book.id}">Reading</a></li>
+			  <li><a class="dropdown-item" th:href="'/tempUpdateCompleted?id=' + ${book.id}">Completed</a></li>
+			  <li><hr class="dropdown-divider"></li>
+			  <li><a class="dropdown-item" th:href="'/tempDelete?id=' + ${book.id}">Delete</a></li>
+			</ul>
+		      </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		</th:block>
+	      </div>	
+	    </div>
+	  </div>
+	</div>
+      </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
