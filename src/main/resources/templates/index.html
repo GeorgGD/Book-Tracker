@@ -61,11 +61,11 @@
 		      <div class="dropdown">
 			<button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" id="libraryBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
 			<ul class="dropdown-menu" aria-labelledby="libraryBookActions">
-			  <li><a class="dropdown-item" href="/tempUpdateToRead">To Read</a></li>
-			  <li><a class="dropdown-item" href="/tempUpdateReading">Reading</a></li>
-			  <li><a class="dropdown-item" href="/tempUpdateCompleted">Completed</a></li>
+			  <li><a class="dropdown-item" th:href="'/tempUpdateToRead?id=' + ${book.id}">To Read</a></li>
+			  <li><a class="dropdown-item" th:href="'/tempUpdateReading?id=' + ${book.id}">Reading</a></li>
+			  <li><a class="dropdown-item" th:href="'/tempUpdateCompleted?id=' + ${book.id}">Completed</a></li>
 			  <li><hr class="dropdown-divider"></li>
-			  <li><a class="dropdown-item" href="/tempDelete">Delete</a></li>
+			  <li><a class="dropdown-item" th:href="'/tempDelete?id=' + ${book.id}">Delete</a></li>
 			</ul>
 		      </div>
 		      </div>
