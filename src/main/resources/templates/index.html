@@ -57,7 +57,7 @@
 		      <h5 class="card-title" th:text="${book.name}"></h5>
 		      <p class="card-text">Author: <span th:text="${book.author}"></span></p>
 		      <p class="card-text">Genre: <span th:text="${book.genre}"></span></p>
-		      <p class="card-text">Status: <span id="status" th:text="${book.completed_date} + ' ' + ${book.reading}"></span></p>
+		      <p class="card-text">Status: <span class="status" th:text="${book.completed_date} + ' ' + ${book.reading}"></span></p>
 		      <div class="dropdown">
 			<button type="button" class="btn btn-red text-white fw-bold dropdown-toggle" id="libraryBookActions" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
 			<ul class="dropdown-menu" aria-labelledby="libraryBookActions">
